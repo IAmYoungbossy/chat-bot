@@ -1,12 +1,9 @@
 import express from 'express';
-import { createConversation, getConversations } from '../controllers/conversationController.js';
+import messageRoutes from './messageRoutes.js';
 
 const router = express.Router();
 
-// Create a new conversation
-router.post('/', createConversation);
-
-// Get all conversations
-router.get('/', getConversations);
+// Mount message routes
+router.use('/:conversationId', messageRoutes);
 
 export default router;
