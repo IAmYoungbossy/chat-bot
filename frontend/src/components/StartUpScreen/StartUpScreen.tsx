@@ -1,9 +1,12 @@
 "use client";
 
+// Custom Hooks
 import useConversationContext from "@/customHooks/useConversationContext";
-import createConversation from "@/components/ConversationList/helpers/createConversation";
 
-const WelcomeScreen = () => {
+// Helpers
+import createConversation from "../ConversationList/helpers/createConversation";
+
+const StartUpScreen = () => {
   const { setConversations, router, setError } =
     useConversationContext();
 
@@ -32,4 +35,4 @@ const WelcomeScreen = () => {
   );
 };
 
-export default WelcomeScreen;
+export default StartUpScreen;
