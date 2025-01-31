@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import Message from "./Message";
+import Message from "../Message";
 import { useParams } from "next/navigation";
 import { ChatWindowProps } from "@/types/chatWindow.type";
 
@@ -32,7 +32,7 @@ export default function ChatWindow({
         const response = await fetch(
           `/api/conversations/${activeConversationId}`
         );
-        console.log(response);
+
         if (!response.ok) throw new Error("Failed to fetch messages");
         const data = await response.json();
         setMessages(data);

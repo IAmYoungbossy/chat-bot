@@ -1,4 +1,4 @@
-import ChatWindow from "@/components/ChatWindow";
+import ChatWindow from "@/components/ChatWindow/ChatWindow";
 
 export default async function ChatPage({
   params,
