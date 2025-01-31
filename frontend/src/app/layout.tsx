@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import ConversationList from "@/components/ConversationList/ConversationList";
 import { ConversationProvider } from "@/context/ConversationContext";
+import Header from "@/components/Header/Header";
 
 const geistSans = Geist({
   subsets: ["latin"],
@@ -27,12 +28,15 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased flex h-screen`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased h-screen`}
       >
-        <ConversationProvider>
-          <ConversationList />
-          {children}
-        </ConversationProvider>
+        <Header />
+        <div className="flex">
+          <ConversationProvider>
+            <ConversationList />
+            {children}
+          </ConversationProvider>
+        </div>
       </body>
     </html>
   );
