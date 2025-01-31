@@ -1,4 +1,5 @@
-import { FetchConversationProps } from "@/types/fetchConversation.type";
+// Types
+import { FetchConversationProps } from "../types/fetchConversation.type";
 
 const fetchConversations = async ({
   setError,

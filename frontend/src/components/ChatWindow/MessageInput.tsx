@@ -1,4 +1,7 @@
+// Helpers
 import sendMessage from "./helpers/SendMessage";
+
+// Types
 import { SendMessageProps } from "./types/message.type";
 
 const MessageInput = ({

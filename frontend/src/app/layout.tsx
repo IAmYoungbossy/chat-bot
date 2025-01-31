@@ -1,7 +1,7 @@
 import "./globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import ConversationList from "@/components/ConversationList";
+import ConversationList from "@/components/ConversationList/ConversationList";
 import { ConversationProvider } from "@/context/ConversationContext";
 
 const geistSans = Geist({

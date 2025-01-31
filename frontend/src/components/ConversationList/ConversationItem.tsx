@@ -1,6 +1,11 @@
+// External Packages
 import Link from "next/link";
-import { ConversationItemProps } from "@/types/conversationItem.type";
+
+// Components
 import DeleteConversation from "./DeleteConversation";
+
+// Types
+import { ConversationItemProps } from "./types/conversationItem.type";
 
 const ConversationItem = ({
   conversationId,

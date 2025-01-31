@@ -29,3 +29,12 @@ export interface PreviousMessageProps {
   isBotTyping: boolean;
   messages: MessageTypeProps[];
 }
+
+export interface MessageProps {
+  message: {
+    id: number;
+    content: string;
+    createdAt: string;
+    isUserMessage: boolean;
+  };
+}

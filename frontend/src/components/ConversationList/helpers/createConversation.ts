@@ -1,4 +1,5 @@
-import { CreateConversationProps } from "@/types/createConversation.type";
+// Types
+import { CreateConversationProps } from "../types/createConversation.type";
 
 const createConversation = async ({
   router,

@@ -1,7 +1,7 @@
 "use client";
 
-import createConversation from "@/utils/createConversation";
 import useConversationContext from "@/customHooks/useConversationContext";
+import createConversation from "@/components/ConversationList/helpers/createConversation";
 
 const WelcomeScreen = () => {
   const { setConversations, router, setError } =

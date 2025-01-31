@@ -1,8 +1,8 @@
 "use client";
 
 // Components
-import Loader from "../Loader";
-import ErrorScreen from "../ErrorScreen";
+import Loader from "../../utils/Loader";
+import ErrorScreen from "../../utils/ErrorScreen";
 import MessageInput from "./MessageInput";
 import PreviousMessages from "./PreviousMessages";
 
@@ -15,7 +15,7 @@ import fetchMessages from "./helpers/fetchMessages";
 
 // Types
 import { MessageTypeProps } from "./types/message.type";
-import { ChatWindowProps } from "@/types/chatWindow.type";
+import { ChatWindowProps } from "./types/chatWindow.type";
 
 export default function ChatWindow({
   conversationId,

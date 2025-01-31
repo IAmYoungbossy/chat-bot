@@ -1,4 +1,5 @@
-import { DeleteConversationType } from "@/types/deleteConversation.type";
+// Types
+import { DeleteConversationType } from "../types/deleteConversation.type";
 
 const deleteConversation = async ({
   router,

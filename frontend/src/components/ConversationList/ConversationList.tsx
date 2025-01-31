@@ -1,16 +1,16 @@
 "use client";
 
-// Components
-import Loader from "./Loader";
-import ErrorScreen from "./ErrorScreen";
-import ChatNavList from "./ChatNavList";
-
 // External Packages
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
+// Components
+import Loader from "../../utils/Loader";
+import ChatNavList from "./ChatNavList";
+import ErrorScreen from "../../utils/ErrorScreen";
+
 // Utilz
-import fetchConversations from "@/utils/fetchConversation";
+import fetchConversations from "./helpers/fetchConversation";
 
 // Types
 import useConversationContext from "@/customHooks/useConversationContext";

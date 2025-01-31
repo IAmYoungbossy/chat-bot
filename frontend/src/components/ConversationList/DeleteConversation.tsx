@@ -1,8 +1,13 @@
 "use client";
 
-import deleteConversation from "@/utils/deleteConversation";
-import { DeleteConversationProps } from "@/types/deleteConversation.type";
+// Helpers
+import deleteConversation from "./helpers/deleteConversation";
+
+// Custom Hooks
 import useConversationContext from "@/customHooks/useConversationContext";
+
+// Types
+import { DeleteConversationProps } from "./types/deleteConversation.type";
 
 const DeleteConversation = ({
   conversationId,

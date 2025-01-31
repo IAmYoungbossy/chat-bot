@@ -1,3 +1,4 @@
+// Types
 import { FetchMessagesProps } from "../types/message.type";
 
 const fetchMessages = async ({

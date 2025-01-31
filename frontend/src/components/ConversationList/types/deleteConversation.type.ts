@@ -1,4 +1,4 @@
-import { ChatWindowProps } from "./chatWindow.type";
+import { ChatWindowProps } from "../../ChatWindow/types/chatWindow.type";
 import { ConversationItemProps } from "./conversationItem.type";
 import { CreateConversationProps } from "./createConversation.type";
 

@@ -1,4 +1,4 @@
-import WelcomeScreen from "@/components/WelcomeScreen";
+import WelcomeScreen from "@/utils/WelcomeScreen";
 
 function Home() {
   return (

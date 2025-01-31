@@ -1,5 +1,5 @@
 // Components
-import Message from "../Message";
+import Message from "./Message";
 import BotTyping from "./BotTyping";
 
 // Types

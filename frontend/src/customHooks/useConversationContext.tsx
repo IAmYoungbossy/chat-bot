@@ -1,5 +1,9 @@
 import { useContext } from "react";
+
+// Context
 import { ConversationContext } from "@/context/ConversationContext";
+
+// Types
 import { ConversationContextProps } from "@/types/conversationContext.type";
 
 // Custom hook for using the context

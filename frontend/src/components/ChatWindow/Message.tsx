@@ -1,20 +1,8 @@
-interface MessageProps {
-  message: {
-    id: number;
-    content: string;
-    isUserMessage: boolean;
-    createdAt: string;
-  };
-}
+// Types
+import { MessageProps } from "./types/message.type";
 
 export default function Message({ message }: MessageProps) {
-  const formattedDate = new Date(
-    message.createdAt
-  ).toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });
-
+  const formattedDate = formatDate({ message });
   return (
     <div
       className={`flex my-2 ${
@@ -34,3 +22,9 @@ export default function Message({ message }: MessageProps) {
     </div>
   );
 }
+
+const formatDate = ({ message }: MessageProps) =>
+  new Date(message.createdAt).toLocaleTimeString([], {
+    hour: "2-digit",
+    minute: "2-digit",
+  });

@@ -1,7 +1,12 @@
-import React, { Fragment } from "react";
-import CreateConversationButton from "./CreateConversationButton";
+// External Packages
+import { Fragment } from "react";
+
+// Types
+import { ChatNavListProps } from "./types/chatNavList.type";
+
+// Components
 import ConversationItem from "./ConversationItem";
-import { ChatNavListProps } from "@/types/chatNavList.type";
+import CreateConversationButton from "./CreateConversationButton";
 
 const ChatNavList = ({
   router,

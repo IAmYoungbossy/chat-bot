@@ -1,3 +1,4 @@
+// Types
 import { SendMessageProps } from "../types/message.type";
 
 const sendMessage = async ({

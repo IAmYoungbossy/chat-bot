@@ -1,5 +1,9 @@
-import createConversation from "@/utils/createConversation";
-import { CreateConversationProps } from "@/types/createConversation.type";
+// Helpers
+import createConversation from "./helpers/createConversation";
+
+// Types
+import { CreateConversationProps } from "./types/createConversation.type";
+
 
 const CreateConversationButton = ({
   router,

@@ -1,9 +1,12 @@
 "use client";
 
-import { useState, createContext } from "react";
-import { ConversationProps } from "@/types/conversation.type";
-import { ConversationContextProps } from "@/types/conversationContext.type";
+// External Packages
 import { useRouter } from "next/navigation";
+import { useState, createContext } from "react";
+
+// Types
+import { ConversationContextProps } from "@/types/conversationContext.type";
+import { ConversationProps } from "@/components/ConversationList/types/conversation.type";
 
 export const ConversationContext = createContext<
   ConversationContextProps | undefined
