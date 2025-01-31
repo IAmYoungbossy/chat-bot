@@ -1,11 +1,13 @@
-import { NextResponse } from 'next/server';
+import { backendUrl } from "@/constant/constant";
+import { NextResponse } from "next/server";
 
 export async function GET(
-  request: Request,
-  { params }: { params: { conversationId: string } }
+  _request: Request,
+  { params }: { params: Promise<{ conversationId: string }> }
 ) {
+  const { conversationId } = await params;
   const response = await fetch(
-    `http://localhost:5000/api/conversations/${params.conversationId}/messages`
+    `${backendUrl}/api/messages/${conversationId}`
   );
   const data = await response.json();
   return NextResponse.json(data);
@@ -13,17 +15,44 @@ export async function GET(
 
 export async function POST(
   request: Request,
-  { params }: { params: { conversationId: string } }
+  { params }: { params: Promise<{ conversationId: string }> }
 ) {
+  const { conversationId } = await params;
   const body = await request.json();
   const response = await fetch(
-    `http://localhost:5000/api/conversations/${params.conversationId}/messages`,
+    `${backendUrl}/api/messages/${conversationId}`,
     {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
       body: JSON.stringify(body),
     }
   );
   const data = await response.json();
   return NextResponse.json(data, { status: 201 });
+}
+
+export async function DELETE(
+  _request: Request,
+  { params }: { params: Promise<{ conversationId: string }> }
+) {
+  const { conversationId } = await params;
+
+  const response = await fetch(
+    `${backendUrl}/api/conversations/${conversationId}`,
+    {
+      method: "DELETE",
+    }
+  );
+
+  if (!response.ok) {
+    return NextResponse.json(
+      { error: "Failed to delete conversation" },
+      { status: 500 }
+    );
+  }
+
+  return NextResponse.json(
+    { message: "Conversation deleted successfully" },
+    { status: 200 }
+  );
 }

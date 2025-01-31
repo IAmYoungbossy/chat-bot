@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import Message from "./Message";
+import { useParams } from "next/navigation";
+import { ChatWindowProps } from "@/types/chatWindow.type";
 
 interface MessageType {
   id: number;
@@ -12,21 +14,25 @@ interface MessageType {
 
 export default function ChatWindow({
   conversationId,
-}: {
-  conversationId: number;
-}) {
+}: ChatWindowProps) {
   const [messages, setMessages] = useState<MessageType[]>([]);
   const [input, setInput] = useState("");
   const [isBotTyping, setIsBotTyping] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const params = useParams();
+  const activeConversationId =
+    conversationId || Number(params.conversationId);
 
   useEffect(() => {
     const fetchMessages = async () => {
+      if (!activeConversationId) return;
+
       try {
         const response = await fetch(
-          `/api/conversations/${conversationId}/messages`
+          `/api/conversations/${activeConversationId}`
         );
+        console.log(response);
         if (!response.ok) throw new Error("Failed to fetch messages");
         const data = await response.json();
         setMessages(data);
@@ -40,10 +46,10 @@ export default function ChatWindow({
     };
 
     fetchMessages();
-  }, [conversationId]);
+  }, [activeConversationId]);
 
   const sendMessage = async () => {
-    if (!input.trim()) return;
+    if (!input.trim() || !activeConversationId) return;
 
     const tempId = Date.now();
     setMessages((prev) => [
@@ -60,7 +66,7 @@ export default function ChatWindow({
 
     try {
       const response = await fetch(
-        `/api/conversations/${conversationId}/messages`,
+        `/api/conversations/${activeConversationId}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -81,13 +87,14 @@ export default function ChatWindow({
     }
   };
 
-  if (loading)
+  if (!conversationId) return null;
+  else if (loading)
     return (
       <div className="flex-1 p-4 bg-gray-100">
         Loading messages...
       </div>
     );
-  if (error)
+  else if (error)
     return (
       <div className="flex-1 p-4 bg-gray-100 text-red-500">
         {error}
@@ -95,7 +102,7 @@ export default function ChatWindow({
     );
 
   return (
-    <div className="flex flex-col h-full p-4 bg-gray-100">
+    <main className="flex flex-col h-full p-4 bg-gray-100">
       <div className="flex-1 overflow-y-auto">
         {messages.map((message) => (
           <Message
@@ -105,9 +112,9 @@ export default function ChatWindow({
         ))}
         {isBotTyping && (
           <div className="flex items-center mt-2">
-            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce mx-1"></div>
-            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce mx-1 delay-100"></div>
-            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce mx-1 delay-200"></div>
+            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce mx-1" />
+            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce mx-1 delay-100" />
+            <div className="w-2 h-2 bg-gray-500 rounded-full animate-bounce mx-1 delay-200" />
           </div>
         )}
       </div>
@@ -116,12 +123,12 @@ export default function ChatWindow({
           type="text"
           value={input}
           onChange={(e) => setInput(e.target.value)}
-          onKeyPress={(e) => e.key === "Enter" && sendMessage()}
-          className="w-full p-2 border rounded"
+          onKeyDown={(e) => e.key === "Enter" && sendMessage()}
+          className="w-full p-2 border rounded placeholder:text-gray-900 text-black"
           placeholder="Type a message..."
           disabled={isBotTyping}
         />
       </div>
-    </div>
+    </main>
   );
 }
