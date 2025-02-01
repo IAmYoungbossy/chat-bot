@@ -15,7 +15,7 @@ export default function Message({ message }: MessageProps) {
         <ChatIcon imageURL="/chat-bot.svg" />
       )}
       <div
-        className={`max-w-xs py-2.5 px-4 rounded-lg ${
+        className={`max-w-xs py-2.5 px-4 ${
           message.isUserMessage
             ? "bg-[#625B71] text-white rounded-[20px] rounded-br-[8px]"
             : "bg-[#ECE6F0] text-gray-800 rounded-[20px] rounded-bl-[8px]"

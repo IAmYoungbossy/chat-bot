@@ -19,10 +19,15 @@ const CreateConversationButton = ({
         setError,
         setConversations,
       })}
-      className="w-full flex justify-center items-center py-4 mb-4 gap-3 text-primary bg-create-btn rounded-2xl shadow-xml"
+      className="w-full flex justify-center items-center py-4 mb-2 gap-3 text-primary bg-create-btn rounded-2xl shadow-xml"
+      aria-label="Create new conversation"
+      role="button"
     >
-      <AddCircleOutlineIcon />
-      <span className="font-roboto-only font-medium text-sm leading-5 tracking-tightest w-23">
+      <AddCircleOutlineIcon aria-hidden="true" />
+      <span
+        className="font-roboto-only font-medium text-sm leading-5 tracking-tightest w-23"
+        aria-hidden="true"
+      >
         Conversations
       </span>
     </button>

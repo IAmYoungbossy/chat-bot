@@ -33,9 +33,14 @@ body {
   font-family: var(--font-roboto), sans-serif;
 }
 
-/* For WebKit-based browsers (Chrome, Safari, Edge) */
+/* Ensure the scrollbar does not take up extra space */
+.scroll-container {
+  overflow: overlay;
+}
+
+/* WebKit Browsers (Chrome, Safari, Edge) */
 ::-webkit-scrollbar {
-  width: 1px !important;
+  width: 4px;
 }
 
 ::-webkit-scrollbar-track {
@@ -44,29 +49,22 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: #cac4d0;
+  transition: opacity 0.3s ease-in-out;
 }
 
-::-webkit-scrollbar-thumb:hover {
-  background: #cac4d0;
-}
-
-/* For Firefox */
+/* Firefox */
 .scroll-container {
   scrollbar-width: thin;
   scrollbar-color: #cac4d0 transparent;
 }
 
-/* For Edge & IE (Partial Support) */
-.scroll-container {
-  -ms-overflow-style: none;
+.no-scrollbar {
+  overflow: auto; /* Allows scrolling */
+  scrollbar-width: none; /* For Firefox */
+  -ms-overflow-style: none; /* For Edge & IE */
 }
 
-/* Hide scrollbar but keep scrolling */
-.scroll-container::-webkit-scrollbar {
+/* Hide scrollbar for WebKit browsers (Chrome, Safari, Edge) */
+.no-scrollbar::-webkit-scrollbar {
   display: none;
-}
-
-.scroll-container:hover::-webkit-scrollbar {
-  display: block;
-  width: 1px !important;
 }

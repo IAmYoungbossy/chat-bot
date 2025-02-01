@@ -35,7 +35,7 @@ const MessageInput = ({
         disabled={isBotTyping}
         placeholder="Reply to Chatbot"
         onChange={(e) => setInput(e.target.value)}
-        className="w-full py-4 px-5 pr-[3.125rem] placeholder:text-[#625B71] text-black rounded-[28px] bg-[#ece6f0] outline-none hover:bg-[#dcd6e0] focus:bg-[#f7f2fa] focus:outline-[#79747e]"
+        className="w-full py-4 px-5 pr-[3.125rem] placeholder:text-[#625B71] text-black rounded-[28px] bg-[#ece6f0] outline-none transition-all ease-out duration-300 hover:bg-[#dcd6e0] focus:bg-[#f7f2fa] focus:outline-[#79747e]"
       />
       <SendMessageBtn
         input={input}

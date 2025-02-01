@@ -14,20 +14,15 @@ import groupMessagesByDate, {
 
 // Types
 import { PreviousMessageProps } from "./types/message.type";
-// import { useScrollbarVisibility } from "@/customHooks/useScrollbarVisibility";
 
 const PreviousMessages = ({
   messages,
   isBotTyping,
 }: PreviousMessageProps) => {
-  // const scrollRef = useScrollbarVisibility();
   const groupedMessages = groupMessagesByDate(messages);
 
   return (
-    <div
-      // ref={scrollRef}
-      className="overflow-y-auto flex-1 h-full pt-5 pb-7 scroll-container"
-    >
+    <div className="overflow-y-auto flex-1 h-full pt-5 pb-7">
       <div className="flex-1 overflow-y-auto">
         {groupedMessages.map((messagesByDate) => {
           const date = formatDate(messagesByDate?.[0].createdAt);

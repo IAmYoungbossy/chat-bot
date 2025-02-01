@@ -16,13 +16,13 @@ const ChatNavList = ({
   activeConversationId,
 }: ChatNavListProps) => {
   return (
-    <nav className="max-w-nav-wide w-full text-white">
+    <nav className="max-w-nav-wide w-full text-white h-full overflow-y-clip pt-1">
       <CreateConversationButton
         router={router}
         setError={setError}
         setConversations={setConversations}
       />
-      <ul>
+      <ul className="overflow-y-auto h-full pt-2 no-scrollbar">
         {conversations.map((conversation) => (
           <Fragment key={conversation.id}>
             <ConversationItem
