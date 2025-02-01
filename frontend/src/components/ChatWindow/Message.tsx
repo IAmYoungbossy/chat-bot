@@ -7,7 +7,7 @@ export default function Message({ message }: MessageProps) {
     <div
       className={`flex py-2 justify-start ${
         message.isUserMessage ? " flex-row-reverse" : ""
-      } px-6 items-center gap-2`}
+      } px-6 items-end gap-2`}
     >
       {message.isUserMessage ? (
         <ChatIcon imageURL="/user-icon.svg" />

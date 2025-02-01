@@ -46,7 +46,7 @@ export default function ChatWindow({
   ) : error ? (
     <ErrorScreen error={error} />
   ) : (
-    <main className="flex flex-col h-full bg-white rounded-[28px] flex-1">
+    <main className="flex flex-col h-full bg-white rounded-[28px] flex-1 pb-7">
       <ChatWindowHeader />
       <PreviousMessages
         messages={messages}
