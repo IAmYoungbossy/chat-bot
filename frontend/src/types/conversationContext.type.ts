@@ -6,9 +6,11 @@ import { ConversationProps } from "../components/ConversationList/types/conversa
 import { AppRouterInstance } from "next/dist/shared/lib/app-router-context.shared-runtime";
 
 export interface ConversationContextProps {
+  isOpenMenu: boolean;
   error: string | null;
   router: AppRouterInstance;
   conversations: ConversationProps[];
+  setIsOpenMenu: Dispatch<SetStateAction<boolean>>;
   setError: Dispatch<SetStateAction<string | null>>;
   setConversations: Dispatch<SetStateAction<ConversationProps[]>>;
 }

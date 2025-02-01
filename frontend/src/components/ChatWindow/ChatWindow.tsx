@@ -16,7 +16,11 @@ import fetchMessages from "./helpers/fetchMessages";
 // Types
 import { MessageTypeProps } from "./types/message.type";
 import { ChatWindowProps } from "./types/chatWindow.type";
+
+// Icons
 import ChatIcon from "./ChatIcon";
+import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
+import useConversationContext from "@/customHooks/useConversationContext";
 
 export default function ChatWindow({
   conversationId,
@@ -45,7 +49,7 @@ export default function ChatWindow({
   ) : error ? (
     <ErrorScreen error={error} />
   ) : (
-    <main className="flex flex-col h-full bg-white rounded-[28px] flex-1 pb-7">
+    <main className="flex flex-col h-full md:bg-white bg-background rounded-[28px] flex-1 pb-7">
       <ChatWindowHeader />
       <PreviousMessages
         messages={messages}
@@ -65,7 +69,23 @@ export default function ChatWindow({
 }
 
 const ChatWindowHeader = () => (
-  <div className="py-2 px-5 border-b-[3px] border-[#cac4d0]">
+  <div className="py-2 px-5 border-b-[2px] md:border-t-0 border-t-[2px] border-[#cac4d0] flex justify-between items-center">
     <ChatIcon imageURL="/chat-bot.svg" />
+    <MobileMenu />
   </div>
 );
+
+const MobileMenu = () => {
+  const { isOpenMenu, setIsOpenMenu } = useConversationContext();
+  return (
+    <button
+      className="md:hidden inline"
+      onClick={() => setIsOpenMenu(!isOpenMenu)}
+      onKeyDown={(e) =>
+        e.key === "Enter" && setIsOpenMenu(!isOpenMenu)
+      }
+    >
+      <MenuOutlinedIcon />
+    </button>
+  );
+};

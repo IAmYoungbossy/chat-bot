@@ -34,7 +34,7 @@ export default function RootLayout({
         className={`${roboto.variable} antialiased h-screen`}
       >
         <Header />
-        <section className="flex mt-8 px-8 gap-6 pb-5 max-w-page-max w-full mx-auto nav-main-section">
+        <section className="flex mt-8 px-0 gap-6 pb-5 max-w-page-max w-full mx-auto nav-main-section md:px-8">
           <ConversationProvider>
             <ConversationList />
             {children}
