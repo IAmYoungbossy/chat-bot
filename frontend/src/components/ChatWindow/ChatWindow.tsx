@@ -1,7 +1,6 @@
 "use client";
 
 // External Packages
-import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
 
@@ -66,7 +65,7 @@ export default function ChatWindow({
 }
 
 const ChatWindowHeader = () => (
-  <div className="py-2 px-5 border-b-[3px] border-[#cac4d0] mb-5">
+  <div className="py-2 px-5 border-b-[3px] border-[#cac4d0]">
     <ChatIcon imageURL="/chat-bot.svg" />
   </div>
 );

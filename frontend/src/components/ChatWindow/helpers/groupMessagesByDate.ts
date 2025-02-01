@@ -1,7 +1,4 @@
-import {
-  MessageProps,
-  MessageTypeProps,
-} from "../types/message.type";
+import { MessageTypeProps } from "../types/message.type";
 
 /**
  * Groups messages by the date they were created (ignoring the time).

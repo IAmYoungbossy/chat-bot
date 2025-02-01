@@ -17,7 +17,7 @@ const MessageInput = ({
   activeConversationId,
 }: SendMessageProps & { isBotTyping: boolean }) => {
   return (
-    <div className="mt-7 px-6 relative">
+    <div className="px-6 relative">
       <input
         type="text"
         value={input}

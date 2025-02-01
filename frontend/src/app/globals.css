@@ -20,9 +20,53 @@
   }
 }
 
+.nav-main-section {
+  height: calc(100vh - 70px - 2rem);
+}
+
 body {
   margin: 0;
+  display: grid;
   color: var(--foreground);
+  grid-template-rows: auto 1fr;
   background: var(--background);
   font-family: var(--font-roboto), sans-serif;
+}
+
+/* For WebKit-based browsers (Chrome, Safari, Edge) */
+::-webkit-scrollbar {
+  width: 1px !important;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #cac4d0;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #cac4d0;
+}
+
+/* For Firefox */
+.scroll-container {
+  scrollbar-width: thin;
+  scrollbar-color: #cac4d0 transparent;
+}
+
+/* For Edge & IE (Partial Support) */
+.scroll-container {
+  -ms-overflow-style: none;
+}
+
+/* Hide scrollbar but keep scrolling */
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.scroll-container:hover::-webkit-scrollbar {
+  display: block;
+  width: 1px !important;
 }

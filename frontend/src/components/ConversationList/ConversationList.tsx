@@ -1,7 +1,7 @@
 "use client";
 
 // External Packages
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 
 // Components
@@ -23,9 +23,17 @@ export default function ConversationList() {
   const { conversationId } = useParams();
   const activeConversationId = Number(conversationId);
 
+  const fetchAndSetConversations = useCallback(() => {
+    fetchConversations({
+      setError,
+      setLoading,
+      setConversations,
+    });
+  }, [setError, setLoading, setConversations]);
+
   useEffect(() => {
-    fetchConversations({ setError, setLoading, setConversations });
-  }, []);
+    fetchAndSetConversations();
+  }, [fetchAndSetConversations]);
 
   return loading ? (
     <Loader />
