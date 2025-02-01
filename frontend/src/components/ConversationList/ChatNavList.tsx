@@ -16,7 +16,7 @@ const ChatNavList = ({
   activeConversationId,
 }: ChatNavListProps) => {
   return (
-    <nav className="w-64 bg-gray-800 text-white p-4">
+    <nav className="max-w-nav-wide w-full text-white">
       <CreateConversationButton
         router={router}
         setError={setError}

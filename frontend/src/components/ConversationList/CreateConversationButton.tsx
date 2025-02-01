@@ -1,9 +1,11 @@
 // Helpers
 import createConversation from "./helpers/createConversation";
 
+// Icons
+import AddCircleOutlineIcon from "@mui/icons-material/AddCircleOutline";
+
 // Types
 import { CreateConversationProps } from "./types/createConversation.type";
-
 
 const CreateConversationButton = ({
   router,
@@ -17,9 +19,12 @@ const CreateConversationButton = ({
         setError,
         setConversations,
       })}
-      className="w-full p-2 mb-4 bg-blue-500 text-white rounded hover:bg-blue-600"
+      className="w-full flex justify-center items-center py-4 mb-4 gap-3 text-primary bg-create-btn rounded-2xl shadow-xml"
     >
-      Conversation
+      <AddCircleOutlineIcon />
+      <span className="font-roboto-only font-medium text-sm leading-5 tracking-tightest w-23">
+        Conversations
+      </span>
     </button>
   );
 };

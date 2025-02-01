@@ -10,22 +10,36 @@ import { ConversationItemProps } from "./types/conversationItem.type";
 const ConversationItem = ({
   conversationId,
   activeConversationId,
-}: ConversationItemProps) => (
-  <li
-    className={`flex justify-between bg-[#E8DEF8] text-[#1D1B20] items-center p-2 rounded ${
-      conversationId === activeConversationId
-        ? "bg-gray-400"
-        : "hover:bg-gray-700"
-    } mb-2`}
-  >
-    <Link href={`/chat/${conversationId}`}>
-      <span>Conversation {conversationId}</span>
-    </Link>
-    <DeleteConversation
-      activeConversationId={activeConversationId}
-      conversationId={conversationId}
-    />
-  </li>
-);
+}: ConversationItemProps) => {
+  return (
+    <li
+      className={`w-full text-secondary bg-[#e8def7] rounded-2xl ${
+        conversationId === activeConversationId
+          ? "bg-[#d0c6de]"
+          : "hover:bg-opacity-80"
+      } mt-1`}
+      role="listitem"
+      aria-current={
+        conversationId === activeConversationId ? "true" : undefined
+      }
+    >
+      <Link
+        href={`/chat/${conversationId}`}
+        className="w-full flex justify-between items-center p-4 gap-4"
+        aria-label={`Open conversation ${conversationId}`}
+      >
+        <span
+          className="font-roboto-only font-normal text-sm leading-6 tracking-[0.5px] w-23 whitespace-nowrap"
+        >
+          Conversation {conversationId}
+        </span>
+        <DeleteConversation
+          conversationId={conversationId}
+          activeConversationId={activeConversationId}
+        />
+      </Link>
+    </li>
+  );
+};
 
 export default ConversationItem;

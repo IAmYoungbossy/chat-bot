@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #FEF7FF;
+  --background: #fef7ff;
   --foreground: #171717;
 }
 
@@ -13,6 +13,12 @@
     --foreground: #ededed;
   }
 } */
+
+@layer utilities {
+  .font-roboto-only {
+    font-family: var(--font-roboto), sans-serif;
+  }
+}
 
 body {
   margin: 0;
