@@ -1,30 +1,28 @@
 // Types
+import ChatIcon from "./ChatIcon";
 import { MessageProps } from "./types/message.type";
 
 export default function Message({ message }: MessageProps) {
-  const formattedDate = formatDate({ message });
   return (
     <div
-      className={`flex my-2 ${
-        message.isUserMessage ? "justify-end" : "justify-start"
-      }`}
+      className={`flex py-2 justify-start ${
+        message.isUserMessage ? " flex-row-reverse" : ""
+      } px-6 items-center gap-2`}
     >
+      {message.isUserMessage ? (
+        <ChatIcon imageURL="/user-icon.svg" />
+      ) : (
+        <ChatIcon imageURL="/chat-bot.svg" />
+      )}
       <div
-        className={`max-w-xs p-3 rounded-lg ${
+        className={`max-w-xs py-2.5 px-4 rounded-lg ${
           message.isUserMessage
-            ? "bg-blue-500 text-white"
-            : "bg-gray-200 text-gray-800"
+            ? "bg-[#625B71] text-white rounded-[20px] rounded-br-[8px]"
+            : "bg-[#ECE6F0] text-gray-800 rounded-[20px] rounded-bl-[8px]"
         }`}
       >
         <p>{message.content}</p>
-        <p className="text-xs mt-1 opacity-70">{formattedDate}</p>
       </div>
     </div>
   );
 }
-
-const formatDate = ({ message }: MessageProps) =>
-  new Date(message.createdAt).toLocaleTimeString([], {
-    hour: "2-digit",
-    minute: "2-digit",
-  });

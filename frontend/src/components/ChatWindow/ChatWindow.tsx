@@ -17,6 +17,7 @@ import fetchMessages from "./helpers/fetchMessages";
 // Types
 import { MessageTypeProps } from "./types/message.type";
 import { ChatWindowProps } from "./types/chatWindow.type";
+import ChatIcon from "./ChatIcon";
 
 export default function ChatWindow({
   conversationId,
@@ -66,12 +67,6 @@ export default function ChatWindow({
 
 const ChatWindowHeader = () => (
   <div className="py-2 px-5 border-b-[3px] border-[#cac4d0] mb-5">
-    <Image
-      priority
-      width={48}
-      height={48}
-      src="/chat-bot.svg"
-      alt="chat bot icon"
-    />
+    <ChatIcon imageURL="/chat-bot.svg" />
   </div>
 );
