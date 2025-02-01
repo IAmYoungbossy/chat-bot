@@ -25,7 +25,7 @@ const ConversationItem = ({
     >
       <Link
         href={`/chat/${conversationId}`}
-        className="w-full flex justify-between items-center p-4 gap-4"
+        className="w-full flex justify-between items-center px-4 py-[14.8px] gap-4"
         aria-label={`Open conversation ${conversationId}`}
       >
         <span

@@ -1,14 +1,15 @@
 "use client";
 
-// Components
-import Loader from "../../utils/Loader";
-import ErrorScreen from "../../utils/ErrorScreen";
-import MessageInput from "./MessageInput";
-import PreviousMessages from "./PreviousMessages";
-
 // External Packages
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useParams } from "next/navigation";
+
+// Components
+import Loader from "../../utils/Loader";
+import MessageInput from "./MessageInput";
+import ErrorScreen from "../../utils/ErrorScreen";
+import PreviousMessages from "./PreviousMessages";
 
 // Utilz
 import fetchMessages from "./helpers/fetchMessages";
@@ -44,7 +45,8 @@ export default function ChatWindow({
   ) : error ? (
     <ErrorScreen error={error} />
   ) : (
-    <main className="flex flex-col h-full p-4 bg-gray-100">
+    <main className="flex flex-col h-full bg-white rounded-[28px] flex-1">
+      <ChatWindowHeader />
       <PreviousMessages
         messages={messages}
         isBotTyping={isBotTyping}
@@ -61,3 +63,15 @@ export default function ChatWindow({
     </main>
   );
 }
+
+const ChatWindowHeader = () => (
+  <div className="py-2 px-5 border-b-[3px] border-[#cac4d0] mb-5">
+    <Image
+      priority
+      width={48}
+      height={48}
+      src="/chat-bot.svg"
+      alt="chat bot icon"
+    />
+  </div>
+);

@@ -6,9 +6,5 @@ export default async function ChatPage({
   params: Promise<{ conversationId: string }>;
 }) {
   const { conversationId } = await params;
-  return (
-    <div className="flex-1">
-      <ChatWindow conversationId={Number(conversationId)} />
-    </div>
-  );
+  return <ChatWindow conversationId={Number(conversationId)} />;
 }
