@@ -1,6 +1,21 @@
 // Types
 import { SendMessageProps } from "../types/message.type";
 
+/**
+ * Sends a message in the active conversation.
+ *
+ * @param {Object} params - The parameters for sending a message.
+ * @param {string} params.input - The message content to be sent.
+ * @param {Function} params.setInput - Function to update the input state.
+ * @param {Function} params.setError - Function to set an error message.
+ * @param {Function} params.setMessages - Function to update the messages state.
+ * @param {Function} params.setIsBotTyping - Function to set the bot typing state.
+ * @param {string} params.activeConversationId - The ID of the active conversation.
+ *
+ * @returns {Promise<void>} A promise that resolves when the message is sent.
+ *
+ * @throws {Error} Throws an error if the message fails to send.
+ */
 const sendMessage = async ({
   input,
   setInput,

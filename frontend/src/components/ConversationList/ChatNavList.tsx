@@ -41,7 +41,7 @@ const ChatNavList = ({
         isOpenMenu
           ? "opacity-100 pointer-events-auto"
           : "opacity-0 pointer-events-none"
-      } md:opacity-100 md:pointer-events-auto min-w-56 text-white md:h-full screen md:pt-4 pt-4`}
+      } md:opacity-100 md:pointer-events-auto min-w-56 text-white md:h-full screen md:pt-4 pt-0`}
     >
       <Box
         component="div"

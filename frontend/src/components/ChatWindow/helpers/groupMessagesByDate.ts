@@ -7,30 +7,39 @@ import { MessageTypeProps } from "../types/message.type";
  */
 export const groupMessagesByDate = (messages: MessageTypeProps[]) => {
   const grouped = messages.reduce((acc, message) => {
-    // Extract the date in YYYY-MM-DD format
+
     const date = new Date(message.createdAt)
       .toISOString()
       .split("T")[0];
 
-    // Find the group for this date
     let group = acc.find(([groupDate]) => groupDate === date);
 
-    // If no group exists for the date, create a new one
     if (!group) {
       group = [date, []];
       acc.push(group);
     }
 
-    // Add the message to the group
     group[1].push(message);
 
     return acc;
   }, [] as [string, MessageTypeProps[]][]);
 
-  // Return only the arrays of messages (dropping the date key if desired)
   return grouped.map(([, messages]) => messages);
 };
 
+/**
+ * Formats a given date string into a more readable format.
+ *
+ * The formatted date will be in the "en-US" locale with the following format:
+ * - Month: abbreviated (e.g., "Jan")
+ * - Day: 2-digit (e.g., "01")
+ * - Hour: 2-digit (e.g., "01")
+ * - Minute: 2-digit (e.g., "30")
+ * - Hour format: 12-hour clock with AM/PM
+ *
+ * @param createdAt - The date string to format.
+ * @returns The formatted date string.
+ */
 export const formatDate = (createdAt: string) => {
   return new Intl.DateTimeFormat("en-US", {
     month: "short",
