@@ -52,7 +52,7 @@ const updateCache = (
 const checkMessageCache = (activeConversationId: number) => {
   const findCachedDataPredicate = (
     conversation: MessageTypeProps[]
-  ) => conversation[0].conversationId === activeConversationId;
+  ) => conversation?.[0]?.conversationId === activeConversationId;
   const cachedDataIndex = messageInMemoryCache.findIndex(
     findCachedDataPredicate
   );
