@@ -20,6 +20,13 @@ const sendMessage = async ({
       isUserMessage: true,
       createdAt: new Date().toISOString(),
     },
+    {
+      content: "...",
+      isTyping: true,
+      isUserMessage: false,
+      id: tempId + 0.33 + 0.1,
+      createdAt: new Date().toISOString(),
+    },
   ]);
   setInput("");
   setIsBotTyping(true);

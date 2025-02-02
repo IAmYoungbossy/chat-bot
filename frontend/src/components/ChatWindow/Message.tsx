@@ -1,8 +1,14 @@
-// Types
+// Components
 import ChatIcon from "./ChatIcon";
+import BotTyping from "./BotTyping";
+
+// Types
 import { MessageProps } from "./types/message.type";
 
-export default function Message({ message }: MessageProps) {
+export default function Message({
+  message,
+  isBotTyping,
+}: MessageProps & { isBotTyping: boolean }) {
   return (
     <div
       className={`flex py-2 justify-start ${
@@ -21,7 +27,11 @@ export default function Message({ message }: MessageProps) {
             : "bg-[#ECE6F0] text-gray-800 rounded-[20px] rounded-bl-[8px]"
         }`}
       >
-        <p>{message.content}</p>
+        {isBotTyping && !message.isUserMessage ? (
+          <BotTyping />
+        ) : (
+          <p>{message.content}</p>
+        )}
       </div>
     </div>
   );

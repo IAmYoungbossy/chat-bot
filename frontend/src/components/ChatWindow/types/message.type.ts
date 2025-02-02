@@ -4,6 +4,7 @@ export interface MessageTypeProps {
   id: number;
   content: string;
   createdAt: string;
+  isTyping?: boolean;
   isUserMessage: boolean;
 }
 

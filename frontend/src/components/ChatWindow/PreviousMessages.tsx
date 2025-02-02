@@ -5,7 +5,7 @@ import { Fragment } from "react";
 
 // Components
 import Message from "./Message";
-import BotTyping from "./BotTyping";
+import Loader from "@/utils/Loader";
 
 // Helpers
 import groupMessagesByDate, {
@@ -14,7 +14,6 @@ import groupMessagesByDate, {
 
 // Types
 import { PreviousMessageProps } from "./types/message.type";
-import Loader from "@/utils/Loader";
 
 const PreviousMessages = ({
   loading,
@@ -35,13 +34,17 @@ const PreviousMessages = ({
                 <div className="text-center leading-5 tracking-[0.25px] text-sm font-normal mt-7">
                   {date}
                 </div>
-                {messagesByDate.map((message) => (
-                  <Message
-                    key={message.id}
-                    message={message}
-                  />
-                ))}
-                {isBotTyping && <BotTyping />}
+                {messagesByDate.map((message) => {
+                  return (
+                    <Message
+                      key={message.id}
+                      message={message}
+                      isBotTyping={
+                        (message.isTyping ?? false) && isBotTyping
+                      }
+                    />
+                  );
+                })}
               </Fragment>
             );
           })}
