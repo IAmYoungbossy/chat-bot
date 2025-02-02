@@ -24,7 +24,7 @@ import useConversationContext from "@/customHooks/useConversationContext";
 const ChatWindow = memo(({ conversationId }: ChatWindowProps) => {
   const params = useParams();
   const [input, setInput] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
   const [isBotTyping, setIsBotTyping] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [messages, setMessages] = useState<MessageTypeProps[]>([]);

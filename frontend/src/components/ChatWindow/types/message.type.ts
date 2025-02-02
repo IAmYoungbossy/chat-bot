@@ -6,6 +6,7 @@ export interface MessageTypeProps {
   createdAt: string;
   isTyping?: boolean;
   isUserMessage: boolean;
+  conversationId: number;
 }
 
 export interface SendMessageProps {
