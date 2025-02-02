@@ -1,13 +1,11 @@
 "use client";
 
-// External Packages
-import { useCallback, useEffect, useState } from "react";
-import { useParams } from "next/navigation";
-
 // Components
-import Loader from "../../utils/Loader";
 import ChatNavList from "./ChatNavList";
-import ErrorScreen from "../../utils/ErrorScreen";
+
+// External Packages
+import { useParams } from "next/navigation";
+import { useCallback, useEffect, useState } from "react";
 
 // Utilz
 import fetchConversations from "./helpers/fetchConversation";
@@ -35,13 +33,11 @@ export default function ConversationList() {
     fetchAndSetConversations();
   }, [fetchAndSetConversations]);
 
-  return loading ? (
-    <Loader />
-  ) : error ? (
-    <ErrorScreen error={error} />
-  ) : (
+  return (
     <ChatNavList
+      error={error}
       router={router}
+      loading={loading}
       setError={setError}
       conversations={conversations}
       setConversations={setConversations}

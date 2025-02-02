@@ -13,7 +13,7 @@ const StartUpScreen = () => {
   return (
     <div className="max-w-md mx-auto text-center p-4">
       <h2 className="text-xl font-semibold">
-        Welcome to AdamantCode Chat Bot
+        Welcome to Chatbot
       </h2>
       <p className="text-base mt-2">
         Click{" "}

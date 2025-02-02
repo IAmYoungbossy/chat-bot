@@ -26,7 +26,9 @@ export interface FetchMessagesProps extends BaseSendMessageProps {
 }
 
 export interface PreviousMessageProps {
+  loading: boolean;
   isBotTyping: boolean;
+  conversationId: number;
   messages: MessageTypeProps[];
 }
 

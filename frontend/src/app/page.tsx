@@ -2,7 +2,7 @@ import StartUpScreen from "@/components/StartUpScreen/StartUpScreen";
 
 function Home() {
   return (
-    <main className="flex flex-1 w-full min-h-full justify-center items-center">
+    <main className="flex w-full min-h-full justify-center items-center h-full md:bg-white bg-background rounded-[28px] flex-1 pb-7">
       <StartUpScreen />
     </main>
   );

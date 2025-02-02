@@ -10,5 +10,7 @@ type BaseConversationItemProps = Pick<
 export interface ChatNavListProps
   extends CreateConversationProps,
     BaseConversationItemProps {
+  loading: boolean;
+  error: string | null;
   conversations: ConversationProps[];
 }

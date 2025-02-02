@@ -44,16 +44,16 @@ export default function ChatWindow({
     });
   }, [activeConversationId]);
 
-  return !conversationId ? null : loading ? (
-    <Loader />
-  ) : error ? (
+  return error ? (
     <ErrorScreen error={error} />
   ) : (
     <main className="flex flex-col h-full md:bg-white bg-background rounded-[28px] flex-1 pb-7">
       <ChatWindowHeader />
       <PreviousMessages
+        loading={loading}
         messages={messages}
         isBotTyping={isBotTyping}
+        conversationId={conversationId}
       />
       <MessageInput
         input={input}

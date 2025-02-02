@@ -13,10 +13,10 @@ const ConversationItem = ({
 }: ConversationItemProps) => {
   return (
     <li
-      className={`w-full text-secondary bg-[#e8def7] rounded-2xl ${
+      className={`w-full text-secondary rounded-2xl ${
         conversationId === activeConversationId
           ? "bg-[#d0c6de]"
-          : "hover:bg-opacity-80"
+          : "hover:bg-opacity-80 bg-[#e8def7]"
       } mt-1`}
       role="listitem"
       aria-current={
@@ -25,12 +25,10 @@ const ConversationItem = ({
     >
       <Link
         href={`/chat/${conversationId}`}
-        className="w-full flex justify-between items-center px-4 py-[14.8px] gap-4"
+        className="w-full flex justify-between items-center px-4 py-[14.8px] gap-4 rounded-2xl"
         aria-label={`Open conversation ${conversationId}`}
       >
-        <span
-          className="font-roboto-only font-normal text-sm leading-6 tracking-[0.5px] w-23 whitespace-nowrap"
-        >
+        <span className="font-roboto-only font-normal text-sm leading-6 tracking-[0.5px] w-23 whitespace-nowrap">
           Conversation {conversationId}
         </span>
         <DeleteConversation
