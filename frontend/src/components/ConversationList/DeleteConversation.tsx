@@ -1,7 +1,12 @@
 "use client";
 
-// Icons
+// Components
+import DeleteModal from "./DeleteModal";
+
+// External Packages
+import Button from "@mui/material/Button";
 import SvgIcon from "@mui/material/SvgIcon";
+import { useState, MouseEvent, useCallback } from "react";
 
 // Helpers
 import deleteConversation from "./helpers/deleteConversation";
@@ -11,8 +16,6 @@ import useConversationContext from "@/customHooks/useConversationContext";
 
 // Types
 import { DeleteConversationProps } from "./types/deleteConversation.type";
-import DeleteModal from "./DeleteModal";
-import { useState, MouseEvent, useCallback } from "react";
 
 const DeleteConversation = ({
   conversationId,
@@ -40,27 +43,38 @@ const DeleteConversation = ({
     },
     [conversationId, activeConversationId]
   );
-  
+
   return (
     <>
-      <button
+      <Button
         type="button"
         title="Delete"
-        aria-label="Delete conversation"
         onClick={handleOpen}
+        sx={{
+          top: "14px",
+          right: "16px",
+          padding: "2px",
+          minWidth: "auto",
+          position: "absolute",
+          ".MuiTouchRipple-child": {
+            backgroundColor: "#ff00009e",
+          },
+        }}
+        aria-label="Delete conversation"
       >
         <SvgIcon>
           <path
-            className="hover:fill-red-600"
             fill="#49454F"
+            className="hover:fill-red-600"
             d="M7 21q-.824 0-1.412-.587A1.93 1.93 0 0 1 5 19V6H4V4h5V3h6v1h5v2h-1v13q0 .824-.587 1.413A1.93 1.93 0 0 1 17 21zM17 6H7v13h10zM9 17h2V8H9zm4 0h2V8h-2z"
           ></path>
         </SvgIcon>
-      </button>
+      </Button>
       <DeleteModal
         open={open}
         onDelete={handleDelete}
         handleClose={handleClose}
+        conversationId={conversationId}
       />
     </>
   );

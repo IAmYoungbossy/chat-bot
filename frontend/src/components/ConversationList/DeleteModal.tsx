@@ -39,8 +39,10 @@ const DeleteModal = ({
   open,
   onDelete,
   handleClose,
+  conversationId,
 }: {
   open: boolean;
+  conversationId: number;
   handleClose: () => void;
   onDelete: (e: MouseEvent<HTMLButtonElement>) => void;
 }) => {
@@ -73,7 +75,8 @@ const DeleteModal = ({
           }}
           id="delete-conversation"
         >
-          Are you sure you want to delete Conversation 1?
+          Are you sure you want to delete Conversation{" "}
+          {conversationId}?
         </Typography>
         <Box
           sx={{

@@ -1,7 +1,8 @@
-// Helpers
+// External Packages
 import { memo } from "react";
+import { IconButton } from "@mui/material";
+// Helpers
 import sendMessage from "./helpers/SendMessage";
-
 // Types
 import { SendMessageProps } from "./types/message.type";
 
@@ -15,7 +16,15 @@ const SendMessageBtn = memo(
     activeConversationId,
   }: SendMessageProps) => {
     return (
-      <button
+      <IconButton
+        onClick={sendMessage.bind(null, {
+          input,
+          setError,
+          setInput,
+          setMessages,
+          setIsBotTyping,
+          activeConversationId,
+        })}
         onKeyDown={(e) =>
           e.key === "Enter" &&
           sendMessage({
@@ -27,15 +36,19 @@ const SendMessageBtn = memo(
             activeConversationId,
           })
         }
-        onClick={sendMessage.bind(null, {
-          input,
-          setError,
-          setInput,
-          setMessages,
-          setIsBotTyping,
-          activeConversationId,
-        })}
-        className="absolute bottom-1 right-7"
+        sx={{
+          width: 48,
+          height: 48,
+          bottom: "4px",
+          right: "24px",
+          borderRadius: "50%",
+          position: "absolute",
+          backgroundColor: "transparent",
+          "&:hover": {
+            backgroundColor: "rgba(73, 69, 79, 0.1)",
+          },
+        }}
+        aria-label="Send message"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -43,6 +56,7 @@ const SendMessageBtn = memo(
           height="48"
           fill="none"
           viewBox="0 0 48 48"
+          style={{ width: "32px", height: "32px" }}
         >
           <g clipPath="url(#clip0_5334_2410)">
             <path
@@ -63,11 +77,10 @@ const SendMessageBtn = memo(
             </clipPath>
           </defs>
         </svg>
-      </button>
+      </IconButton>
     );
   }
 );
 
 SendMessageBtn.displayName = "SendMessageBtn";
-
 export default SendMessageBtn;

@@ -1,3 +1,6 @@
+// MUI Components
+import { Button } from "@mui/material";
+
 // Helpers
 import createConversation from "./helpers/createConversation";
 
@@ -13,24 +16,40 @@ const CreateConversationButton = ({
   setConversations,
 }: CreateConversationProps) => {
   return (
-    <button
+    <Button
       onClick={createConversation.bind(null, {
         router,
         setError,
         setConversations,
       })}
-      className="w-full flex justify-center items-center py-4 mb-2 gap-3 text-primary bg-create-btn rounded-2xl shadow-xml"
+      fullWidth
+      sx={{
+        py: 2,
+        mb: 2,
+        gap: 3,
+        display: "flex",
+        color: "#21005D",
+        borderRadius: "2xl",
+        fontSize: "0.875rem",
+        fontFamily: "Roboto",
+        fontWeight: "medium",
+        alignItems: "center",
+        letterSpacing: "0.1px",
+        justifyContent: "center",
+        backgroundColor: "#ebddff",
+        "&:hover": {
+          backgroundColor: "#d8cbff",
+        },
+        boxShadow:
+          "0px 1px 3px 0px rgba(0, 0, 0, 0.302), 0px 4px 8px 3px rgba(0, 0, 0, 0.149)",
+      }}
       aria-label="Create new conversation"
-      role="button"
     >
-      <AddCircleOutlineIcon aria-hidden="true" />
-      <span
-        className="font-roboto-only font-medium text-sm leading-5 tracking-tightest w-23"
-        aria-hidden="true"
-      >
+      <AddCircleOutlineIcon />{" "}
+      <span className="font-roboto-only font-medium text-sm leading-3 tracking-tightest">
         Conversations
       </span>
-    </button>
+    </Button>
   );
 };
 

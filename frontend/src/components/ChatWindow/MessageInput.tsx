@@ -1,5 +1,8 @@
-// Components
+// External Packages
 import { memo, useState } from "react";
+import { TextField } from "@mui/material";
+
+// Components
 import SendMessageBtn from "./SendMessageBtn";
 
 // Helpers
@@ -17,11 +20,15 @@ const MessageInput = memo(
     activeConversationId,
   }: SendMessageProps & { isBotTyping: boolean }) => {
     const [messageInput, setMessageInput] = useState("");
+
     return (
       <div className="px-6 relative">
-        <input
-          type="text"
+        <TextField
+          fullWidth
           value={messageInput}
+          disabled={isBotTyping}
+          placeholder="Reply to Chatbot"
+          onChange={(e) => setMessageInput(e.target.value)}
           onKeyDown={(e) =>
             e.key === "Enter" &&
             sendMessage({
@@ -33,10 +40,44 @@ const MessageInput = memo(
               setInput: setMessageInput,
             })
           }
-          disabled={isBotTyping}
-          placeholder="Reply to Chatbot"
-          onChange={(e) => setMessageInput(e.target.value)}
-          className="w-full py-4 px-5 pr-[3.125rem] placeholder:text-[#625B71] text-black rounded-[28px] bg-[#ece6f0] outline-none transition-all ease-out duration-300 hover:bg-[#dcd6e0] focus:bg-[#f7f2fa] focus:outline-[#79747e]"
+          sx={{
+            "& .MuiInputBase-root": {
+              boxShadow: "none",
+              borderBottom: "none",
+              "&::before, &::after": {
+                content: '""',
+                border: "none",
+                display: "none",
+              },
+            },
+          }}
+          slotProps={{
+            input: {
+              sx: {
+                py: 1.5,
+                px: 2.5,
+                color: "#000",
+                "&::placeholder": {
+                  color: "#625B71",
+                },
+                borderRadius: "28px",
+                backgroundColor: "#ece6f0",
+                "&:hover": {
+                  backgroundColor: "#dcd6e0",
+                },
+                "&.Mui-focused": {
+                  boxShadow: "none",
+                  backgroundColor: "#f7f2fa",
+                },
+                "&.Mui-disabled": {
+                  color: "#b8b3c0",
+                  backgroundColor: "#ece6f0",
+                },
+                transition: "all 0.3s ease-out",
+              },
+            },
+          }}
+          variant="standard"
         />
         <SendMessageBtn
           input={messageInput}
