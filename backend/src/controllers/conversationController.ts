@@ -5,6 +5,19 @@ import {
 } from "../services/conversationService";
 import { Request, Response } from "express";
 
+/**
+ * Creates a new conversation.
+ *
+ * This function handles the creation of a new conversation by calling the
+ * `createConversationService` function. If the conversation is created
+ * successfully, it responds with a status code of 201 and the created
+ * conversation object in JSON format. If an error occurs, it responds with
+ * a status code of 500 and an error message.
+ *
+ * @param _req - The request object (not used in this function).
+ * @param res - The response object used to send the HTTP response.
+ * @returns A promise that resolves to the HTTP response.
+ */
 export const createConversation = async (
   _req: Request,
   res: Response
@@ -20,6 +33,15 @@ export const createConversation = async (
   }
 };
 
+/**
+ * Retrieves a list of conversations.
+ *
+ * @param _req - The request object (not used in this function).
+ * @param res - The response object used to send the result or error.
+ * @returns A JSON response with the list of conversations or an error message.
+ *
+ * @throws Will return a 500 status code with an error message if an error occurs during the retrieval process.
+ */
 export const getConversations = async (
   _req: Request,
   res: Response
@@ -35,6 +57,15 @@ export const getConversations = async (
   }
 };
 
+/**
+ * Deletes a conversation based on the provided conversation ID.
+ *
+ * @param req - The request object containing the conversation ID in the parameters.
+ * @param res - The response object used to send the status of the operation.
+ * @returns A promise that resolves to void.
+ *
+ * @throws Will return a 500 status code and an error message if an error occurs during the deletion process.
+ */
 export const deleteConversation = async (
   req: Request,
   res: Response

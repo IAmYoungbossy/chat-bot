@@ -5,6 +5,16 @@ import {
 import { Request, Response } from "express";
 import { validateMessageInput } from "../validations/messageValidation";
 
+/**
+ * Sends a message in a conversation and retrieves the chatbot's response.
+ *
+ * @param req - The request object containing the conversation ID in the parameters and the message content in the body.
+ * @param res - The response object used to send back the status and data.
+ * @returns A promise that resolves to void.
+ *
+ * @throws Will return a 400 status code if the input validation fails.
+ * @throws Will return a 500 status code if there is a server error.
+ */
 export const sendMessage = async (
   req: Request,
   res: Response
@@ -13,14 +23,12 @@ export const sendMessage = async (
     const { conversationId } = req.params;
     const { content } = req.body;
 
-    // Validate input
     const { error } = validateMessageInput({ content });
     if (error) {
       res.status(400).json({ error: error.issues[0].message });
       return;
     }
 
-    // Send message and get chatbot response
     const messages = await sendMessageService(
       conversationId,
       content
@@ -31,6 +39,15 @@ export const sendMessage = async (
   }
 };
 
+/**
+ * Retrieves messages by conversation ID.
+ *
+ * @param req - The request object containing the conversation ID in the parameters.
+ * @param res - The response object used to send back the retrieved messages or an error message.
+ * @returns A promise that resolves to void.
+ *
+ * @throws Will return a 500 status code with an error message if an error occurs during message retrieval.
+ */
 export const getMessagesByConversationId = async (
   req: Request,
   res: Response

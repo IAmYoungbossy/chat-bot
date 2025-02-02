@@ -3,12 +3,21 @@ import { PrismaClient, Message } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-// Send a message and get chatbot response
+/**
+ * Sends a message in a conversation and simulates a chatbot response.
+ *
+ * @param {string | number} conversationId - The ID of the conversation where the message will be sent.
+ * @param {string} content - The content of the user's message.
+ * @returns {Promise<Message[]>} - A promise that resolves to an array of messages in the conversation, ordered by creation time.
+ *
+ * @example
+ * const messages = await sendMessageService(1, "Hello, how are you?");
+ * console.log(messages);
+ */
 export const sendMessageService = async (
   conversationId: string | number,
   content: string
 ): Promise<Message[]> => {
-  // Save user message
   await prisma.message.create({
     data: {
       content,
@@ -20,7 +29,6 @@ export const sendMessageService = async (
   // Simulate chatbot typing delay
   await sleep(2000);
 
-  // Save chatbot response
   await prisma.message.create({
     data: {
       content: "This is an AI generated response",
@@ -29,14 +37,18 @@ export const sendMessageService = async (
     },
   });
 
-  // Return all messages for the conversation
   return prisma.message.findMany({
     where: { conversationId: parseInt(conversationId.toString()) },
     orderBy: { createdAt: "asc" },
   });
 };
 
-// Get messages for a conversation
+/**
+ * Retrieves messages for a given conversation ID, ordered by creation date in ascending order.
+ *
+ * @param {string | number} conversationId - The ID of the conversation to retrieve messages for.
+ * @returns {Promise<Message[]>} A promise that resolves to an array of messages.
+ */
 export const getMessagesByConversationIdService = async (
   conversationId: string | number
 ): Promise<Message[]> => {

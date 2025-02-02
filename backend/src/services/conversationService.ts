@@ -2,12 +2,21 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+/**
+ * Creates a new conversation with an initial chatbot message.
+ *
+ * This function uses Prisma to create a new conversation record in the database.
+ * After creating the conversation, it also creates an initial message associated
+ * with the conversation. The initial message is a system message with the content
+ * "How can I help you?".
+ *
+ * @returns {Promise<Conversation>} The newly created conversation object.
+ */
 export const createConversationService = async () => {
   const conversation = await prisma.conversation.create({
     data: {},
   });
 
-  // Create Bot initial response
   await prisma.message.create({
     data: {
       isUserMessage: false,
@@ -19,6 +28,11 @@ export const createConversationService = async () => {
   return conversation;
 };
 
+/**
+ * Retrieves all conversations from the database, including their associated messages.
+ *
+ * @returns {Promise<Array>} A promise that resolves to an array of conversation objects, each including their messages.
+ */
 export const getConversationsService = async () => {
   return await prisma.conversation.findMany({
     include: {
@@ -27,6 +41,12 @@ export const getConversationsService = async () => {
   });
 };
 
+/**
+ * Deletes a conversation and all its associated messages from the database.
+ *
+ * @param conversationId - The ID of the conversation to delete. Can be a string or number.
+ * @returns A promise that resolves to void when the operation is complete.
+ */
 export const deleteConversationService = async (
   conversationId: string | number
 ): Promise<void> => {

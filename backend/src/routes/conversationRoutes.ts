@@ -7,12 +7,13 @@ import {
 
 const router = express.Router();
 
-// Create a new conversation
-router.post('/', createConversation);
-
 // Get all conversations
 router.get('/', getConversations);
 
+// Create a new conversation
+router.post('/', createConversation);
+
+// Delete conversation
 router.delete("/:conversationId", deleteConversation);
 
 export default router;

@@ -6,7 +6,10 @@ import {
 
 const router = express.Router();
 
+// Send message
 router.post("/:conversationId", sendMessage);
+
+// Retrive messages
 router.get("/:conversationId", getMessagesByConversationId);
 
 export default router;
