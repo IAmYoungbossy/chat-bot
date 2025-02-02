@@ -1,11 +1,6 @@
 "use client";
 
-// External Packages
-import { useState, useEffect } from "react";
-import { useParams } from "next/navigation";
-
 // Components
-import Loader from "../../utils/Loader";
 import MessageInput from "./MessageInput";
 import ErrorScreen from "../../utils/ErrorScreen";
 import PreviousMessages from "./PreviousMessages";
@@ -17,14 +12,16 @@ import fetchMessages from "./helpers/fetchMessages";
 import { MessageTypeProps } from "./types/message.type";
 import { ChatWindowProps } from "./types/chatWindow.type";
 
+// External Packages
+import { useParams } from "next/navigation";
+import { useState, useEffect, useCallback, memo } from "react";
+
 // Icons
 import ChatIcon from "./ChatIcon";
 import MenuOutlinedIcon from "@mui/icons-material/MenuOutlined";
 import useConversationContext from "@/customHooks/useConversationContext";
 
-export default function ChatWindow({
-  conversationId,
-}: ChatWindowProps) {
+const ChatWindow = memo(({ conversationId }: ChatWindowProps) => {
   const params = useParams();
   const [input, setInput] = useState("");
   const [loading, setLoading] = useState(true);
@@ -35,7 +32,7 @@ export default function ChatWindow({
   const activeConversationId =
     conversationId || Number(params.conversationId);
 
-  useEffect(() => {
+  const fetchAndSetMessages = useCallback(() => {
     fetchMessages({
       setError,
       setLoading,
@@ -43,6 +40,10 @@ export default function ChatWindow({
       activeConversationId,
     });
   }, [activeConversationId]);
+
+  useEffect(() => {
+    fetchAndSetMessages();
+  }, []);
 
   return error ? (
     <ErrorScreen error={error} />
@@ -66,26 +67,40 @@ export default function ChatWindow({
       />
     </main>
   );
-}
+});
 
-const ChatWindowHeader = () => (
+const ChatWindowHeader = memo(() => (
   <div className="py-2 px-5 border-b-[2px] md:border-t-0 border-t-[2px] border-[#cac4d0] flex justify-between items-center">
     <ChatIcon imageURL="/chat-bot.svg" />
     <MobileMenu />
   </div>
-);
+));
 
-const MobileMenu = () => {
+const MobileMenu = memo(() => {
   const { isOpenMenu, setIsOpenMenu } = useConversationContext();
+
+  const handleClick = useCallback(() => {
+    setIsOpenMenu(!isOpenMenu);
+  }, [isOpenMenu, setIsOpenMenu]);
+
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent<HTMLButtonElement>) => {
+      if (e.key === "Enter") {
+        setIsOpenMenu(!isOpenMenu);
+      }
+    },
+    [isOpenMenu, setIsOpenMenu]
+  );
+
   return (
     <button
+      onClick={handleClick}
+      onKeyDown={handleKeyDown}
       className="md:hidden inline"
-      onClick={() => setIsOpenMenu(!isOpenMenu)}
-      onKeyDown={(e) =>
-        e.key === "Enter" && setIsOpenMenu(!isOpenMenu)
-      }
     >
       <MenuOutlinedIcon />
     </button>
   );
-};
+});
+
+export default ChatWindow;
