@@ -19,10 +19,10 @@ const fetchMessages = async ({
     activeConversationId
   );
 
-  cachedData && setMessages(cachedData);
+  if (cachedData) setMessages(cachedData);
 
   try {
-    !cachedData && setLoading(true);
+   if( !cachedData) setLoading(true);
     const response = await fetch(
       `/api/conversations/${activeConversationId}`
     );
@@ -45,9 +45,8 @@ const updateCache = (
   cachedDataIndex: number,
   cachedData: MessageTypeProps[] | undefined
 ) => {
-  cachedData && cachedDataIndex > 0
-    ? messageInMemoryCache.splice(cachedDataIndex, 1, data)
-    : messageInMemoryCache.push(data);
+  if (cachedData && cachedDataIndex > 0) messageInMemoryCache.splice(cachedDataIndex, 1, data)
+  else messageInMemoryCache.push(data);
 };
 
 const checkMessageCache = (activeConversationId: number) => {

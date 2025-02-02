@@ -43,7 +43,7 @@ const ChatWindow = memo(({ conversationId }: ChatWindowProps) => {
 
   useEffect(() => {
     fetchAndSetMessages();
-  }, []);
+  }, [fetchAndSetMessages]);
 
   return error ? (
     <ErrorScreen error={error} />
@@ -102,5 +102,9 @@ const MobileMenu = memo(() => {
     </button>
   );
 });
+
+MobileMenu.displayName = "MobileMenu";
+ChatWindow.displayName = "ChatWindow";
+ChatWindowHeader.displayName = "ChatWindowHeader";
 
 export default ChatWindow;

@@ -1,7 +1,7 @@
 import { styled } from "@mui/material/styles";
 import { CircularProgress } from "@mui/material";
 
-const TrackCircularProgress = styled(CircularProgress)((_props) => ({
+const TrackCircularProgress = styled(CircularProgress)(() => ({
   left: 0,
   color: "#e8def7",
   position: "absolute",

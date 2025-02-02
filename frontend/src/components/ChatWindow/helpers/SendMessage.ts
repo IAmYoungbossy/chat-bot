@@ -19,6 +19,7 @@ const sendMessage = async ({
       content: input,
       isUserMessage: true,
       createdAt: new Date().toISOString(),
+      conversationId: activeConversationId,
     },
     {
       content: "...",
@@ -26,6 +27,7 @@ const sendMessage = async ({
       isUserMessage: false,
       id: tempId + 0.33 + 0.1,
       createdAt: new Date().toISOString(),
+      conversationId: activeConversationId,
     },
   ]);
   setInput("");

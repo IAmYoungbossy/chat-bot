@@ -70,4 +70,6 @@ const PreviousMessages = memo(
   }
 );
 
+PreviousMessages.displayName = "PreviousMessages";
+
 export default PreviousMessages;

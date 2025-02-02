@@ -68,4 +68,6 @@ const SendMessageBtn = memo(
   }
 );
 
+SendMessageBtn.displayName = "SendMessageBtn";
+
 export default SendMessageBtn;
