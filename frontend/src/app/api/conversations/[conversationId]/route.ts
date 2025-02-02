@@ -7,7 +7,7 @@ export async function GET(
 ) {
   const { conversationId } = await params;
   const response = await fetch(
-    `${backendUrl}/api/messages/${conversationId}`
+    `${backendUrl}/messages/${conversationId}`
   );
   const data = await response.json();
   return NextResponse.json(data);
@@ -20,7 +20,7 @@ export async function POST(
   const { conversationId } = await params;
   const body = await request.json();
   const response = await fetch(
-    `${backendUrl}/api/messages/${conversationId}`,
+    `${backendUrl}/messages/${conversationId}`,
     {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -38,7 +38,7 @@ export async function DELETE(
   const { conversationId } = await params;
 
   const response = await fetch(
-    `${backendUrl}/api/conversations/${conversationId}`,
+    `${backendUrl}/conversations/${conversationId}`,
     {
       method: "DELETE",
     }
