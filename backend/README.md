@@ -1,11 +1,82 @@
-# Chat Application
-
-This is a simplified chat application with a frontend built using Next.js and a backend built using Express.js. The application allows users to interact with a chatbot, switch conversations, and manage chat history.
-
-## Setup Instructions
-
-1. Clone the repository.
-2. Run `docker-compose up` to start the PostgreSQL database.
-3. Navigate to the `backend` directory and run `npx prisma migrate dev` to set up the database schema.
-4. Start the backend server: `npm run dev`.
-5. Navigate to the `frontend` directory and start the frontend: `npm run dev`.
+---
+## **Backend README.md**
+```markdown
+# Backend
+The backend of the chat application is built with **Express.js** and **Prisma ORM**. It provides a RESTful API for managing conversations and messages, and it integrates with a **PostgreSQL** database.
+---
+## **Features**
+- **Conversation Management**:
+  - Create, fetch, and delete conversations.
+- **Message Management**:
+  - Send messages and fetch chat history.
+- **Swagger Documentation**:
+  - API documentation available at `/api-docs`.
+---
+## **Project Structure**
+```
+backend/
+├── Dockerfile
+├── prisma/
+│   └── schema.prisma
+├── src/
+│   ├── controllers/
+│   │   └── v1/
+│   │       ├── conversationController.ts
+│   │       └── messageController.ts
+│   ├── routes/
+│   │   └── v1/
+│   │       ├── conversationRoutes.ts
+│   │       └── messageRoutes.ts
+│   ├── services/
+│   │   └── v1/
+│   │       ├── conversationService.ts
+│   │       └── messageService.ts
+│   ├── swagger.ts
+│   ├── validations/
+│   │   └── messageValidation.ts
+│   └── index.ts
+├── package.json
+└── tsconfig.json
+```
+---
+## **Setup**
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+2. Set up the database:
+   - Run Prisma migrations:
+     ```bash
+     npx prisma migrate dev --name init
+     ```
+3. Start the development server:
+   ```bash
+   npm run dev
+   ```
+4. Access the API:
+   - API: `http://localhost:5000`
+   - Swagger Docs: `http://localhost:5000/api-docs`
+---
+## **Environment Variables**
+- `DATABASE_URL`: PostgreSQL connection string.
+  ```env
+  DATABASE_URL="postgresql://chatuser:chatpassword@db:5432/chatdb"
+  ```
+---
+## **API Endpoints**
+- **Conversations**:
+  - `GET /api/conversations`: Fetch all conversations.
+  - `POST /api/conversations`: Create a new conversation.
+  - `DELETE /api/conversations/:conversationId`: Delete a conversation.
+- **Messages**:
+  - `GET /api/conversations/:conversationId/messages`: Fetch messages for a conversation.
+  - `POST /api/conversations/:conversationId/messages`: Send a message.
+---
+## **Future Improvements**
+1. **Authentication**:
+   - Add JWT-based authentication.
+2. **Real-Time Updates**:
+   - Integrate WebSockets for real-time messaging.
+3. **Testing**:
+   - Add unit and integration tests.
+```
