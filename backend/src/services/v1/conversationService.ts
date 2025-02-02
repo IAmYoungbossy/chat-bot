@@ -12,7 +12,7 @@ const prisma = new PrismaClient();
  *
  * @returns {Promise<Conversation>} The newly created conversation object.
  */
-export const createConversationService = async () => {
+export const createConversationServiceV1 = async () => {
   const conversation = await prisma.conversation.create({
     data: {},
   });
@@ -33,7 +33,7 @@ export const createConversationService = async () => {
  *
  * @returns {Promise<Array>} A promise that resolves to an array of conversation objects, each including their messages.
  */
-export const getConversationsService = async () => {
+export const getConversationsServiceV1 = async () => {
   return await prisma.conversation.findMany({
     include: {
       messages: true,
@@ -47,7 +47,7 @@ export const getConversationsService = async () => {
  * @param conversationId - The ID of the conversation to delete. Can be a string or number.
  * @returns A promise that resolves to void when the operation is complete.
  */
-export const deleteConversationService = async (
+export const deleteConversationServiceV1 = async (
   conversationId: string | number
 ): Promise<void> => {
   await prisma.message.deleteMany({

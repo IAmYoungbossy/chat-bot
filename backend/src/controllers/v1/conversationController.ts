@@ -1,8 +1,8 @@
 import {
-  getConversationsService,
-  deleteConversationService,
-  createConversationService,
-} from "../services/conversationService";
+  getConversationsServiceV1,
+  deleteConversationServiceV1,
+  createConversationServiceV1,
+} from "../../services/v1/conversationService";
 import { Request, Response } from "express";
 
 /**
@@ -18,12 +18,12 @@ import { Request, Response } from "express";
  * @param res - The response object used to send the HTTP response.
  * @returns A promise that resolves to the HTTP response.
  */
-export const createConversation = async (
+export const createConversationV1 = async (
   _req: Request,
   res: Response
 ) => {
   try {
-    const conversation = await createConversationService();
+    const conversation = await createConversationServiceV1();
     res.status(201).json(conversation);
   } catch (error) {
     res.status(500).json({
@@ -42,12 +42,12 @@ export const createConversation = async (
  *
  * @throws Will return a 500 status code with an error message if an error occurs during the retrieval process.
  */
-export const getConversations = async (
+export const getConversationsV1 = async (
   _req: Request,
   res: Response
 ) => {
   try {
-    const conversations = await getConversationsService();
+    const conversations = await getConversationsServiceV1();
     res.status(200).json(conversations);
   } catch (error) {
     res.status(500).json({
@@ -66,13 +66,13 @@ export const getConversations = async (
  *
  * @throws Will return a 500 status code and an error message if an error occurs during the deletion process.
  */
-export const deleteConversation = async (
+export const deleteConversationV1 = async (
   req: Request,
   res: Response
 ): Promise<void> => {
   try {
     const { conversationId } = req.params;
-    await deleteConversationService(conversationId);
+    await deleteConversationServiceV1(conversationId);
     res.status(204).send();
   } catch (error) {
     res.status(500).json({ error: (error as Error).message });

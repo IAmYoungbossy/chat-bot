@@ -1,8 +1,8 @@
 import cors from "cors";
 import express from "express";
 import setupSwagger from "./swagger";
-import messageRoutes from "./routes/messageRoutes";
-import conversationRoutes from "./routes/conversationRoutes";
+import messageRoutes from "./routes/v1/messageRoutes";
+import conversationRoutes from "./routes/v1/conversationRoutes";
 
 const app = express();
 const PORT = 5000;

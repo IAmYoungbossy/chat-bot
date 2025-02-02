@@ -1,9 +1,9 @@
 import {
   sendMessageService,
   getMessagesByConversationIdService,
-} from "../services/messageService";
+} from "../../services/v1/messageService";
 import { Request, Response } from "express";
-import { validateMessageInput } from "../validations/messageValidation";
+import { validateMessageInput } from "../../validations/messageValidation";
 
 /**
  * Sends a message in a conversation and retrieves the chatbot's response.
@@ -15,7 +15,7 @@ import { validateMessageInput } from "../validations/messageValidation";
  * @throws Will return a 400 status code if the input validation fails.
  * @throws Will return a 500 status code if there is a server error.
  */
-export const sendMessage = async (
+export const sendMessageV1 = async (
   req: Request,
   res: Response
 ): Promise<void> => {
@@ -48,7 +48,7 @@ export const sendMessage = async (
  *
  * @throws Will return a 500 status code with an error message if an error occurs during message retrieval.
  */
-export const getMessagesByConversationId = async (
+export const getMessagesByConversationIdV1 = async (
   req: Request,
   res: Response
 ): Promise<void> => {
