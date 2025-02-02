@@ -41,7 +41,13 @@ const DeleteConversation = ({
         activeConversationId,
       });
     },
-    [conversationId, activeConversationId]
+    [
+      router,
+      setError,
+      conversationId,
+      setConversations,
+      activeConversationId,
+    ]
   );
 
   return (

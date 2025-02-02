@@ -2,6 +2,7 @@
 
 // External Packages
 import { Fragment } from "react";
+import { List, Box, Collapse } from "@mui/material";
 
 // Types
 import { ChatNavListProps } from "./types/chatNavList.type";
@@ -26,10 +27,12 @@ const ChatNavList = ({
 }: ChatNavListProps) => {
   const { isOpenMenu, setIsOpenMenu } = useConversationContext();
 
-  return error ? (
-    <ErrorScreen error={error} />
-  ) : (
+  if (error) return <ErrorScreen error={error} />;
+
+  return (
     <nav
+      role="navigation"
+      aria-label="Chat Navigation"
       onClick={() => setIsOpenMenu(!isOpenMenu)}
       onKeyDown={(e) =>
         e.key === "Enter" && setIsOpenMenu(!isOpenMenu)
@@ -38,9 +41,10 @@ const ChatNavList = ({
         isOpenMenu
           ? "opacity-100 pointer-events-auto"
           : "opacity-0 pointer-events-none"
-      } md:opacity-100 md:pointer-events-auto min-w-56 text-white md:h-full screen md:pt-1 pt-0`}
+      } md:opacity-100 md:pointer-events-auto min-w-56 text-white md:h-full screen md:pt-4 pt-4`}
     >
-      <div
+      <Box
+        component="div"
         onClick={(e) => {
           e.preventDefault();
           e.stopPropagation();
@@ -54,18 +58,31 @@ const ChatNavList = ({
           setError={setError}
           setConversations={setConversations}
         />
-        <ul className="overflow-y-auto overflow-x-visible h-full pt-2 no-scrollbar">
-          {conversations.map((conversation) => (
-            <Fragment key={conversation.id}>
-              <ConversationItem
-                conversationId={conversation.id}
-                activeConversationId={activeConversationId}
-              />
-            </Fragment>
-          ))}
-          {<Loader loading={loading} />}
-        </ul>
-      </div>
+
+        <div className="overflow-y-auto overflow-x-visible h-full no-scrollbar border">
+          <List
+            component="ul"
+            sx={{
+              gap: 1,
+              padding: 0,
+              display: "flex",
+              flexDirection: "column"
+            }}
+          >
+            {conversations.map((conversation) => (
+              <Fragment key={conversation.id}>
+                <ConversationItem
+                  conversationId={conversation.id}
+                  activeConversationId={activeConversationId}
+                />
+              </Fragment>
+            ))}
+          </List>
+          <Collapse in={loading}>
+            <Loader loading={loading} />
+          </Collapse>
+        </div>
+      </Box>
     </nav>
   );
 };

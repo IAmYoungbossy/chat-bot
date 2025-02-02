@@ -48,7 +48,7 @@ const ChatWindow = memo(({ conversationId }: ChatWindowProps) => {
   return error ? (
     <ErrorScreen error={error} />
   ) : (
-    <main className="flex flex-col h-full md:bg-white bg-background rounded-[28px] flex-1 pb-7">
+    <main className="flex flex-col h-full md:bg-white bg-background rounded-[28px] flex-1 pb-7 mt-4">
       <ChatWindowHeader />
       <PreviousMessages
         loading={loading}

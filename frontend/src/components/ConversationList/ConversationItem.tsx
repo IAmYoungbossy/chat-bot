@@ -1,6 +1,6 @@
 // External Packages
 import Link from "next/link";
-import { Button } from "@mui/material";
+import { ListItem, Button } from "@mui/material";
 
 // Components
 import DeleteConversation from "./DeleteConversation";
@@ -13,13 +13,18 @@ const ConversationItem = ({
   activeConversationId,
 }: ConversationItemProps) => {
   return (
-    <li
-      className={`w-full text-secondary rounded-2xl ${
-        conversationId === activeConversationId
-          ? "bg-[#d0c6de]"
-          : "hover:bg-opacity-80 bg-[#e8def7]"
-      } mt-1 relative`}
+    <ListItem
+      className="w-full text-secondary rounded-2xl relative"
       role="listitem"
+      sx={{
+        ...(conversationId === activeConversationId
+          ? { bgcolor: "#d0c6de" }
+          : {
+              bgcolor: "rgba(232, 222, 247, 1)",
+              "&:hover": { bgcolor: "rgba(232, 222, 247, 0.8)" },
+            }),
+        py: 0,
+      }}
       aria-current={
         conversationId === activeConversationId ? "true" : undefined
       }
@@ -47,7 +52,6 @@ const ConversationItem = ({
             "&.Mui-focusVisible": {
               backgroundColor: "darkpurple",
             },
-
             ".MuiTouchRipple-child": {
               backgroundColor: "#64558e",
             },
@@ -60,12 +64,11 @@ const ConversationItem = ({
         </Button>
       </Link>
 
-      {/* Delete Conversation Component */}
       <DeleteConversation
         conversationId={conversationId}
         activeConversationId={activeConversationId}
       />
-    </li>
+    </ListItem>
   );
 };
 

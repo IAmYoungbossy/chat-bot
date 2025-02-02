@@ -4,13 +4,14 @@
 import Message from "./Message";
 import Loader from "@/utils/Loader";
 
-// External Packages
-import { Fragment, memo, useEffect, useRef } from "react";
-
 // Helpers
 import groupMessagesByDate, {
   formatDate,
 } from "./helpers/groupMessagesByDate";
+
+// External Packages
+import { Box, Typography } from "@mui/material";
+import { Fragment, memo, useEffect, useRef } from "react";
 
 // Types
 import { PreviousMessageProps } from "./types/message.type";
@@ -37,19 +38,42 @@ const PreviousMessages = memo(
     }, [messages.length]);
 
     return (
-      <div
-        ref={messagesEndRef}
-        className="overflow-y-auto flex-1 h-full pt-5 pb-7 relative"
+      <Box
+        sx={{
+          pt: 5,
+          pb: 7,
+          flexGrow: 1,
+          height: "100%",
+          display: "flex",
+          overflowY: "auto",
+          position: "relative",
+          flexDirection: "column",
+        }}
       >
         {conversationId && (
-          <div className="flex-1 overflow-y-auto">
+          <Box
+            ref={messagesEndRef}
+            sx={{ flexGrow: 1, overflowY: "auto" }}
+          >
             {groupedMessages.map((messagesByDate) => {
               const date = formatDate(messagesByDate?.[0].createdAt);
               return (
                 <Fragment key={date}>
-                  <div className="text-center leading-5 tracking-[0.25px] text-sm font-normal mt-7">
+                  {/* Date Header */}
+                  <Typography
+                    align="center"
+                    variant="subtitle2"
+                    sx={{
+                      mt: 7,
+                      fontWeight: "normal",
+                      color: "text.secondary",
+                      letterSpacing: "0.25px",
+                    }}
+                  >
                     {date}
-                  </div>
+                  </Typography>
+
+                  {/* Messages */}
                   {messagesByDate.map((message) => (
                     <Message
                       key={message.id}
@@ -62,14 +86,15 @@ const PreviousMessages = memo(
                 </Fragment>
               );
             })}
-          </div>
+          </Box>
         )}
+
+        {/* Loading Indicator */}
         <Loader loading={loading} />
-      </div>
+      </Box>
     );
   }
 );
 
 PreviousMessages.displayName = "PreviousMessages";
-
 export default PreviousMessages;
