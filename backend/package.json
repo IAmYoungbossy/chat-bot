@@ -13,11 +13,13 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "prisma": "^4.0.0",
+    "timers-promises": "^1.0.0",
     "swagger-jsdoc": "^6.2.8",
     "swagger-ui-express": "^4.6.2",
     "zod": "^3.0.0"
   },
   "devDependencies": {
+    "@types/node": "^20.0.0",
     "@types/cors": "^2.8.17",
     "@types/express": "^5.0.0",
     "@types/swagger-jsdoc": "^6.0.4",
