@@ -2,7 +2,8 @@
   "name": "backend",
   "version": "1.0.0",
 "scripts": {
-  "start": "sh -c 'npm run migrate && node dist/index.js'",
+  "start": "sh -c 'npm run migrate-if-needed && node dist/index.js'",
+  "migrate-if-needed": "npx prisma db push --skip-generate || true",
   "build": "tsc",
   "migrate": "npx prisma db push",
   "dev": "nodemon src/index.ts"

@@ -27,8 +27,6 @@ const ChatNavList = ({
 }: ChatNavListProps) => {
   const { isOpenMenu, setIsOpenMenu } = useConversationContext();
 
-  if (error) return <ErrorScreen error={error} />;
-
   return (
     <nav
       role="navigation"
@@ -60,24 +58,30 @@ const ChatNavList = ({
         />
 
         <div className="overflow-y-auto overflow-x-visible h-full no-scrollbar">
-          <List
-            component="ul"
-            sx={{
-              gap: 1,
-              padding: 0,
-              display: "flex",
-              flexDirection: "column"
-            }}
-          >
-            {conversations.map((conversation) => (
-              <Fragment key={conversation.id}>
-                <ConversationItem
-                  conversationId={conversation.id}
-                  activeConversationId={activeConversationId}
-                />
-              </Fragment>
-            ))}
-          </List>
+          {error ? (
+            <ErrorScreen error={error} />
+          ) : (
+            <List
+              component="ul"
+              sx={{
+                gap: 1,
+                padding: 0,
+                display: "flex",
+                flexDirection: "column",
+              }}
+            >
+              {conversations &&
+                typeof conversations !== "string" &&
+                conversations?.map((conversation) => (
+                  <Fragment key={conversation.id}>
+                    <ConversationItem
+                      conversationId={conversation.id}
+                      activeConversationId={activeConversationId}
+                    />
+                  </Fragment>
+                ))}
+            </List>
+          )}
           <Collapse in={loading}>
             <Loader loading={loading} />
           </Collapse>

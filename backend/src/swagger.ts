@@ -117,7 +117,7 @@ const options = {
           },
         },
       },
-      "/conversations/{conversationId}/messages": {
+      "/messages/{conversationId}": {
         post: {
           summary: "Send a message in a conversation",
           parameters: [

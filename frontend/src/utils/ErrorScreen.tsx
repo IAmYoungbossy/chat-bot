@@ -1,6 +1,28 @@
-const ErrorScreen = ({ error }: { error: string | null }) => {
+// External Packages
+import Alert from "@mui/material/Alert";
+import AlertTitle from "@mui/material/AlertTitle";
+
+// Types
+import { ErrorScreenProps } from "@/types/errorScreen.type";
+
+const ErrorScreen = ({ error }: ErrorScreenProps) => {
+  if (!error) return null;
+
   return (
-    <div className="w-64 bg-gray-800 p-4 text-red-500">{error}</div>
+    <Alert
+      severity="error"
+      sx={{
+        p: 2,
+        width: "100%",
+        display: "flex",
+        alignItems:"center",
+        justifyContent: "center",
+        backgroundColor: "red.200",
+      }}
+    >
+      <AlertTitle>Error</AlertTitle>
+      {error}
+    </Alert>
   );
 };
 

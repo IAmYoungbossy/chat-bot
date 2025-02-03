@@ -76,7 +76,7 @@ const ChatWindowHeader = memo(() => (
   </div>
 ));
 
-const MobileMenu = memo(() => {
+export const MobileMenu = memo(() => {
   const { isOpenMenu, setIsOpenMenu } = useConversationContext();
 
   const handleClick = useCallback(() => {

@@ -1,105 +1,228 @@
 # Chat Application
-This is a full-stack chat application built with **Next.js** (frontend) and **Express.js** (backend). It allows users to create conversations, send messages, and interact with a chatbot. The application is designed to be scalable, maintainable, and follows best practices for clean code and architecture.
----
+
+A full-stack chat application built with **Next.js** (frontend) and **Express.js** (backend). The backend provides a RESTful API for managing conversations and messages, while the frontend delivers a responsive and user-friendly chat interface.
+
 ## **Features**
-- **Frontend**:
-  - Create and delete conversations.
-  - Send messages to a chatbot.
-  - View chat history with a typing animation for the chatbot.
-  - Responsive and user-friendly UI built with **Tailwind CSS** and **Material-UI**.
-- **Backend**:
-  - RESTful API for managing conversations and messages.
-  - Database integration with **PostgreSQL** and **Prisma ORM**.
-  - Swagger documentation for API endpoints.
+- Fetch previous conversations and messages
+- Send new messages
+- Switch between conversations
+- Delete a conversation
+- Real-time chatbot interaction with simulated typing delay
+- Responsive UI optimized for mobile and desktop
+- Backend API documentation with Swagger
+- Data validation using Zod
+- Dockerized setup for easy deployment
+
 ---
-## **Technologies Used**
-- **Frontend**:
-  - Next.js (App Router)
-  - Tailwind CSS
-  - Material-UI
-  - TypeScript
-- **Backend**:
-  - Express.js
-  - Prisma ORM
-  - PostgreSQL
-  - TypeScript
-  - Swagger (API documentation)
-- **DevOps**:
-  - Docker
-  - Docker Compose
+
+## **Live Demo & Deployment Details**
+
+### **Frontend** (Vercel)
+🔗 [Chatbot Application](https://chat-bot-delta-seven.vercel.app/)
+
+### **Backend** (Render)
+🔗 [API Base URL](https://chat-bot-6zsx.onrender.com)
+
+📜 [Swagger API Docs](https://chat-bot-6zsx.onrender.com/api-docs)
+
+**Note:** Since Render's free tier has an auto-sleep feature, the backend may take up to **50 seconds** to restart after inactivity. If you encounter an error, wait and refresh the page.
+
+## **Screenshots**
+### **Error Screen**
+![Error Screen](./assets/error_screen.png)
+> If you see this, wait ~1 min and refresh the page.
+
+### **Home Screen**
+![Home Screen](./assets/home_screen.png)
+> Default screen when no chat is selected.
+
+### **Chat Window**
+![Chat Window](./assets/chat_window_screen.png)
+> Displays conversation history.
+
+### **Delete Confirmation**
+![Delete Screen](./assets/delete_screen.png)
+> If deleting the current chat, the app redirects to the home screen.
+
+### **Mobile Views**
+#### **Mobile Menu**
+![Mobile Menu](./assets/mobile_menu.png)
+
+#### **Mobile Chat Window**
+![Mobile Chat Window](./assets/mobile_chat_window.png)
+
+#### **Mobile Delete Modal**
+![Mobile Delete Modal](./assets/mobile_delete_modal.png)
+
 ---
-## **Getting Started**
+
+## **Local Development Setup**
+
 ### **Prerequisites**
-1. **Node.js**: Ensure you have Node.js installed (v18 or higher).
-2. **Docker**: Install Docker and Docker Compose to run the application in containers.
-3. **PostgreSQL**: The application uses PostgreSQL as the database. Docker will handle this for you.
-### **Setup**
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/your-username/chat-app.git
-   cd chat-app
-   ```
-2. Set up environment variables:
-   - Create a `.env` file in the `backend` directory:
-     ```env
-     DATABASE_URL="postgresql://chatuser:chatpassword@db:5432/chatdb"
-     ```
-   - Create a `.env.local` file in the `frontend` directory:
-     ```env
-     NEXT_PUBLIC_BACKEND_URL=http://localhost:5000
-     ```
-3. Start the application with Docker:
-   ```bash
-   docker-compose up --build
-   ```
-4. Access the application:
-   - Frontend: `http://localhost:3000`
-   - Backend API: `http://localhost:5000`
-   - Swagger Docs: `http://localhost:5000/api-docs`
+- Node.js 16+
+- Docker & Docker Compose
+- PostgreSQL (if running manually without Docker)
+
+### **Setup Instructions**
+
+#### **1. Clone the Repository**
+```bash
+git clone https://github.com/IAmYoungbossy/chat-bot.git
+cd chat-bot
+```
+
+#### **2. Install Dependencies**
+##### Backend
+```bash
+cd backend
+npm install
+```
+##### Frontend
+```bash
+cd ../frontend
+npm install
+```
+
+#### **3. Set Up Environment Variables**
+##### Backend (`backend/.env`)
+```env
+DATABASE_URL="postgresql://chatuser:chatpassword@localhost:5432/chatdb"
+NODE_ENV=development
+PORT=5000
+```
+##### Frontend (`frontend/.env`)
+```env
+NEXT_PUBLIC_NODE_ENV=development
+NEXT_PUBLIC_BACKEND_URL=http://localhost:5000/api/v1
+```
+
+#### **4. Start the Database**
+```bash
+docker-compose up -d db
+```
+Run Prisma migrations to initialize the database schema:
+```bash
+npx prisma migrate dev --name init
+```
+
+#### **5. Start Backend & Frontend**
+```bash
+docker-compose up --build
+```
+- **Backend:** `http://localhost:5000`
+- **Swagger Docs:** `http://localhost:5000/api-docs`
+- **Frontend:** `http://localhost:3000`
+
 ---
+
+## **Deployment Guide**
+
+### **Backend (Render)**
+1. **Create a PostgreSQL Database on Render**
+   - Copy the **Internal Database URL**
+2. **Deploy Backend Service**
+   - Link GitHub repo and select `backend` as the root directory.
+   - Set the environment variable `DATABASE_URL` to the Render database URL.
+   - Configure build and start commands:
+     ```bash
+     npm run build
+     npm start
+     ```
+
+### **Frontend (Vercel)**
+1. **Import GitHub Repository to Vercel**
+   - Set project root to `frontend`
+2. **Set Environment Variable:**
+   - `NEXT_PUBLIC_BACKEND_URL = https://chat-bot-6zsx.onrender.com`
+3. **Deploy and access frontend:**
+   ```
+   https://chat-bot-delta-seven.vercel.app/
+   ```
+
+---
+
 ## **Project Structure**
-```
-.
-├── backend
+
+```plaintext
+chat-bot/
+├── backend/
 │   ├── Dockerfile
-│   ├── prisma
-│   ├── src
-│   │   ├── controllers
-│   │   ├── routes
-│   │   ├── services
-│   │   ├── swagger.ts
-│   │   └── validations
-├── frontend
-│   ├── Dockerfile
-│   ├── src
-│   │   ├── app
-│   │   ├── components
-│   │   ├── constant
-│   │   ├── context
-│   │   ├── customHooks
-│   │   ├── types
-│   │   └── utils
+│   ├── prisma/
+│   │   └── schema.prisma
+│   ├── src/
+│   │   ├── controllers/
+│   │   ├── routes/
+│   │   ├── models/
+│   │   ├── services/
+│   │   ├── middlewares/
+│   │   ├── utils/
+│   ├── package.json
+│   ├── .env
+├── frontend/
+│   ├── public/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── styles/
+│   │   ├── utils/
+│   ├── package.json
+│   ├── .env
 ├── docker-compose.yml
-└── README.md
+├── README.md
 ```
+
 ---
+
+## **API Documentation**
+
+The backend API is documented using Swagger. You can access the API documentation at:
+🔗 [Swagger API Docs](https://chat-bot-6zsx.onrender.com/api-docs)
+
+### **Endpoints Overview**
+| Method | Endpoint                  | Description            |
+|--------|---------------------------|------------------------|
+| GET    | `/api/v1/conversations`    | Get all conversations |
+| POST   | `/api/v1/conversations`    | Create a new chat     |
+| GET    | `/api/v1/messages/:id`     | Get messages for chat |
+| POST   | `/api/v1/messages`         | Send a new message    |
+| DELETE | `/api/v1/conversations/:id`| Delete a conversation |
+
+---
+
+## **Technologies Used**
+
+### **Frontend**
+- **Next.js** – React framework for SSR
+- **MaterialUI** – UI components
+- **TailwindCSS** – Styling
+
+### **Backend**
+- **Express.js** – Node.js framework
+- **Prisma** – ORM for PostgreSQL
+- **Zod** – Request validation
+- **Swagger** – API documentation
+
+### **Infrastructure & Deployment**
+- **Docker & Docker Compose** – Local and containerized setup
+- **Render** – Backend hosting
+- **Vercel** – Frontend hosting
+
+---
+
 ## **Future Improvements**
-1. **Authentication**:
-   - Add user authentication (e.g., JWT or OAuth).
-   - Implement role-based access control.
-2. **Real-Time Communication**:
-   - Integrate WebSockets for real-time messaging.
-3. **Testing**:
-   - Add unit and integration tests for both frontend and backend.
-4. **Deployment**:
-   - Deploy the application to a cloud platform (e.g., Vercel, AWS, or Heroku).
-5. **UI Enhancements**:
-   - Add dark mode support.
-   - Improve accessibility and responsiveness.
+- Implement WebSockets for real-time updates
+- Enhance chatbot responses using AI
+- Improve UI animations and transitions
+- Implement gracefull error handling
+
 ---
-## **Contributing**
-Contributions are welcome! Please follow these steps:
-1. Fork the repository.
-2. Create a new branch for your feature or bugfix.
-3. Submit a pull request with a detailed description of your changes.
-```
+
+## **License**
+This project is open-source and available under the **MIT License**.
+
+---
+
+## **Author**
+👤 **Letam Bossman Barinua**  
+📧 [Email](mailto:letambossman@gmail.com)  
+🔗 [GitHub](https://github.com/IAmYoungbossy)

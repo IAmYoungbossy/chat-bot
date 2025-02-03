@@ -5,6 +5,7 @@ import useConversationContext from "@/customHooks/useConversationContext";
 
 // Helpers
 import createConversation from "../ConversationList/helpers/createConversation";
+import { MobileMenu } from "../ChatWindow/ChatWindow";
 
 const StartUpScreen = () => {
   const { setConversations, router, setError } =
@@ -12,9 +13,10 @@ const StartUpScreen = () => {
 
   return (
     <div className="max-w-md mx-auto text-center p-4">
-      <h2 className="text-xl font-semibold">
-        Welcome to Chatbot
-      </h2>
+      <div className="absolute right-5 top-5">
+        <MobileMenu />
+      </div>
+      <h2 className="text-xl font-semibold">Welcome to Chatbot</h2>
       <p className="text-base mt-2">
         Click{" "}
         <button

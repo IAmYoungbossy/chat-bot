@@ -7,11 +7,14 @@ import DeleteConversation from "./DeleteConversation";
 
 // Types
 import { ConversationItemProps } from "./types/conversationItem.type";
+import useConversationContext from "@/customHooks/useConversationContext";
 
 const ConversationItem = ({
   conversationId,
   activeConversationId,
 }: ConversationItemProps) => {
+  const { setIsOpenMenu } = useConversationContext();
+
   return (
     <ListItem
       className="w-full text-secondary rounded-2xl relative"
@@ -57,6 +60,8 @@ const ConversationItem = ({
             },
           }}
           aria-label={`Open conversation ${conversationId}`}
+          onClick={() => setIsOpenMenu(false)}
+          onKeyDown={(e) => e.key === "Enter" && setIsOpenMenu(false)}
         >
           <span className="font-roboto-only font-normal text-sm leading-6 tracking-[0.5px] w-23 whitespace-nowrap">
             Conversation {conversationId}

@@ -4,14 +4,14 @@ FROM node:18
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and install all dependencies
+# Copy package.json and install dependencies
 COPY package*.json ./
-RUN npm install --omit=optional  # Install both dependencies and devDependencies
+RUN npm install --omit=optional
 
 # Copy the rest of the application code
 COPY . .
 
-# Generate the Prisma client during the build process
+# Generate Prisma client during build
 RUN npx prisma generate
 
 # Build the TypeScript project
