@@ -17,5 +17,5 @@ RUN npm run build
 # Expose the backend port
 EXPOSE 5000
 
-# Start the backend server
-CMD ["node", "dist/index.js"]
+# Start the backend server (including migrations)
+CMD ["npm", "start"]
