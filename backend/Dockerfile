@@ -11,6 +11,9 @@ RUN npm install --omit=optional  # Install both dependencies and devDependencies
 # Copy the rest of the application code
 COPY . .
 
+# Generate the Prisma client during the build process
+RUN npx prisma generate
+
 # Build the TypeScript project
 RUN npm run build
 
