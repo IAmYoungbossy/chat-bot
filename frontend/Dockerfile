@@ -6,7 +6,7 @@ WORKDIR /app
 
 # Copy package.json and install dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm install --production
 
 # Copy the rest of the application code
 COPY . .
@@ -18,4 +18,4 @@ RUN npm run build
 EXPOSE 3000
 
 # Start the frontend server
-CMD ["sh", "-c", "if [ \"$NODE_ENV\" = 'development' ]; then npm run dev; else npm start; fi"]
+CMD ["npm", "start"]

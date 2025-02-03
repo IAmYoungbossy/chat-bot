@@ -1,7 +1,8 @@
 version: "3.8"
+
 services:
   db:
-    image: postgres:13
+    image: postgres:16
     environment:
       POSTGRES_USER: chatuser
       POSTGRES_PASSWORD: chatpassword
@@ -21,11 +22,8 @@ services:
       - db
     environment:
       DATABASE_URL: postgresql://chatuser:chatpassword@db:5432/chatdb
-      NODE_ENV: development # Ensure the backend runs in development mode
-    volumes:
-      - ./backend:/app
-      - /app/node_modules
-    command: ["npm", "run", "dev"] # Force running in development mode
+      NODE_ENV: production
+    command: ["npm", "start"]
 
   frontend:
     build:
@@ -33,14 +31,10 @@ services:
       dockerfile: Dockerfile
     ports:
       - "3000:3000"
-    depends_on:
-      - backend
     environment:
-      NODE_ENV: development # Ensure the frontend runs in development mode
-    volumes:
-      - ./frontend:/app
-      - /app/node_modules
-    command: ["npm", "run", "dev"] # Force running in development mode
+      NEXT_PUBLIC_BACKEND_URL: http://backend:5000
+      NODE_ENV: production
+    command: ["npm", "start"]
 
 volumes:
   postgres_data:

@@ -59,7 +59,7 @@ const ChatNavList = ({
           setConversations={setConversations}
         />
 
-        <div className="overflow-y-auto overflow-x-visible h-full no-scrollbar border">
+        <div className="overflow-y-auto overflow-x-visible h-full no-scrollbar">
           <List
             component="ul"
             sx={{

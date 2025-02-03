@@ -4,9 +4,9 @@ FROM node:18
 # Set the working directory
 WORKDIR /app
 
-# Copy package.json and install dependencies
+# Copy package.json and install production dependencies
 COPY package*.json ./
-RUN npm install
+RUN npm install --production
 
 # Copy the rest of the application code
 COPY . .
@@ -18,4 +18,4 @@ RUN npm run build
 EXPOSE 5000
 
 # Start the backend server
-CMD ["sh", "-c", "if [ \"$NODE_ENV\" = 'development' ]; then npm run dev; else npm start; fi"]
+CMD ["node", "dist/index.js"]
